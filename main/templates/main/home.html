@@ -1,0 +1,308 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>3D Tech Trading Company | Industrial Products</title>
+
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+   
+<header class="header">
+
+    <a href="/" class="logo">
+    <img src="{% static 'main/logo.png' %}" alt="3D Tech Trading Company">
+    <span>3D Tech Trading Company</span>
+</a>
+
+    <nav class="main-nav">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="{% url 'products' %}">
+            Products
+        </a>
+
+        <a href="{% url 'categories' %}">
+    Categories
+</a>
+
+       <a href="{% url 'about' %}">
+    About Us
+</a>
+<a href="{% url 'contact' %}">
+    Contact
+</a>
+
+        <a href="{% url 'cart' %}">
+            🛒 Cart ({{ cart_count }})
+        </a>
+        <a href="{% url 'admin:login' %}">
+    ⚙ Admin Login
+</a>
+
+    </nav>
+
+    <a class="whatsapp-btn"
+       href="https://wa.me/917411837088"
+       target="_blank">
+        📲 WhatsApp
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()" type="button">
+    ☰
+</button>
+
+</header>
+<div class="mobile-menu" id="mobileMenu">
+
+    <a href="{% url 'home' %}">Home</a>
+
+    <a href="{% url 'products' %}">Products</a>
+
+    <a href="{% url 'categories' %}">
+    Categories
+</a>
+
+    <a href="{% url 'about' %}">
+    About Us
+</a>
+
+    <a href="{% url 'contact' %}">
+    Contact
+</a>
+
+    <a href="{% url 'cart' %}">
+        🛒 Cart ({{ cart_count }})
+    </a>
+
+    <a href="{% url 'admin:login' %}">
+        ⚙ Admin Login
+    </a>
+
+    <a href="https://wa.me/917411837088" target="_blank">
+        📲 WhatsApp
+    </a>
+
+</div>
+
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero-section">
+
+    <div class="hero-content">
+
+        <p class="hero-label">
+            INDUSTRIAL PRODUCTS & ENGINEERING SOLUTIONS
+        </p>
+
+        <h1>
+            Reliable Industrial Products
+            <span>For Your Business</span>
+        </h1>
+
+        <p class="hero-description">
+            Explore industrial equipment, machinery, components
+            and engineering products from 3D Tech Trading Company.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="{% url 'products' %}" class="hero-primary-btn">
+                Explore Products →
+            </a>
+
+            <a href="https://wa.me/917411837088"
+               target="_blank"
+               class="hero-whatsapp-btn">
+                📲 Send Enquiry
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+    
+    <section class="featured-section">
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            OUR PRODUCTS
+        </p>
+
+        <h2>
+            Featured Products
+        </h2>
+
+        <p>
+            Explore our range of industrial products and engineering solutions.
+        </p>
+
+    </div>
+
+
+    <div class="product-grid">
+
+        {% for product in featured_products %}
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    {% if product.image %}
+
+                        <img
+                            src="{{ product.image.url }}"
+                            alt="{{ product.name }}"
+                        >
+
+                    {% else %}
+
+                        <div class="no-image">
+                            No Image Available
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="product-card-content">
+
+                    <p class="product-category">
+                        {{ product.category.name }}
+                    </p>
+
+                    <h3>
+                        {{ product.name }}
+                    </h3>
+
+                    {% if product.description %}
+
+                        <p class="product-description">
+                            {{ product.description|truncatewords:12 }}
+                        </p>
+
+                    {% endif %}
+
+
+                    <div class="product-card-buttons">
+
+                        <a
+                            href="{% url 'product_detail' product.id %}"
+                            class="view-product-btn"
+                        >
+                            View Details
+                        </a>
+
+                        <a
+                            href="{% url 'add_to_cart' product.id %}"
+                            class="add-cart-btn"
+                        >
+                            🛒 Add to Cart
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        {% empty %}
+
+            <p>
+                Products will be added soon.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+
+    <div class="view-all-products">
+
+        <a href="{% url 'products' %}" class="primary-btn">
+            View All Products →
+        </a>
+
+    </div>
+
+</section>
+
+
+    <!-- ENQUIRY SECTION -->
+
+    <section class="enquiry">
+
+        <div>
+
+            <p class="small-title">
+                NEED A PRODUCT?
+            </p>
+
+            <h2>
+                Looking for a specific
+                industrial product?
+            </h2>
+
+            <p>
+                Send us your requirement and our team
+                will get back to you with suitable
+                products and pricing.
+            </p>
+
+        </div>
+
+        <a href="https://wa.me/917411837088"
+           target="_blank"
+           class="primary-btn">
+            Enquire on WhatsApp
+        </a>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>
+            3D Tech Trading Company
+        </h3>
+
+        <p>
+            Industrial Products & Engineering Solutions
+        </p>
+
+        <p>
+            © 2026 3D Tech Trading Company. All Rights Reserved.
+        </p>
+
+    </footer>
+    <script>
+function toggleMenu() {
+    const menu = document.getElementById("mobileMenu");
+
+    menu.classList.toggle("active");
+}
+</script>
+
+</body>
+
+</html>

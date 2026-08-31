@@ -1,0 +1,246 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ product.name }} | 3D Tech Trading Company</title>
+
+    <link rel="stylesheet"
+          href="{% static 'main/style.css' %}">
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <a href="/" class="logo">
+    <img src="{% static 'main/logo.png' %}" alt="3D Tech Trading Company">
+    <span>3D Tech Trading Company</span>
+</a>
+
+    <nav class="main-nav">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="{% url 'products' %}">
+            Products
+        </a>
+
+        <a href="{% url 'categories' %}">
+    Categories
+</a>
+
+        <a href="{% url 'about' %}">
+    About Us
+</a>
+
+        <a href="{% url 'contact' %}">
+    Contact
+</a>
+        <a href="{% url 'cart' %}">
+            🛒 Cart ({{ cart_count }})
+        </a>
+        <a href="{% url 'admin:login' %}">
+    ⚙ Admin Login
+</a>
+
+    </nav>
+
+    <a class="whatsapp-btn"
+       href="https://wa.me/917411837088"
+       target="_blank">
+        📲 WhatsApp
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()" type="button">
+    ☰
+</button>
+
+</header>
+<div class="mobile-menu" id="mobileMenu">
+
+    <a href="{% url 'home' %}">Home</a>
+
+    <a href="{% url 'products' %}">Products</a>
+
+    <a href="{% url 'categories' %}">
+    Categories
+</a>
+
+    <a href="{% url 'about' %}">
+    About Us
+</a>
+
+    <a href="{% url 'contact' %}">
+    Contact
+</a>
+
+    <a href="{% url 'cart' %}">
+        🛒 Cart ({{ cart_count }})
+    </a>
+
+    <a href="{% url 'admin:login' %}">
+        ⚙ Admin Login
+    </a>
+
+    <a href="https://wa.me/917411837088" target="_blank">
+        📲 WhatsApp
+    </a>
+
+</div>
+
+
+
+<!-- PRODUCT DETAILS -->
+
+<section class="product-detail">
+
+    <div class="product-image-section">
+
+        {% if product.image %}
+
+            <img src="{{ product.image.url }}"
+                 alt="{{ product.name }}"
+                 class="detail-image">
+
+        {% else %}
+
+            <div class="detail-no-image">
+                No Image Available
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <div class="product-information">
+
+        <p class="product-category">
+            {{ product.category.name }}
+        </p>
+
+        <h1>
+            {{ product.name }}
+        </h1>
+
+
+        {% if product.product_type %}
+
+            <h3>
+                {{ product.product_type }}
+            </h3>
+
+        {% endif %}
+
+
+        <div class="product-description">
+
+            <h2>Description</h2>
+
+            <p>
+                {{ product.description }}
+            </p>
+
+        </div>
+
+
+        {% if product.specifications %}
+
+        <div class="product-specifications">
+
+            <h2>Specifications</h2>
+
+            <p>
+                {{ product.specifications }}
+            </p>
+
+        </div>
+
+        {% endif %}
+
+
+        <div class="product-price">
+
+            {% if product.price %}
+
+                <span>
+                    ₹{{ product.price }}
+                </span>
+
+            {% else %}
+
+                <span>
+                    Price on Request
+                </span>
+
+            {% endif %}
+
+        </div>
+
+
+        <div class="product-actions">
+
+            <a href="{% url 'add_to_cart' product.id %}"
+   class="add-cart-btn">
+
+    🛒 Add to Cart
+
+</a>
+
+
+            <a href="https://wa.me/917411837088?text=Hello%2C%20I%20am%20interested%20in%20{{ product.name|urlencode }}"
+               target="_blank"
+               class="whatsapp-product-btn">
+
+                📲 Enquire on WhatsApp
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h3>
+        3D Tech Trading Company
+    </h3>
+
+    <p>
+        Industrial Products & Engineering Solutions
+    </p>
+
+    <p>
+        © 2026 3D Tech Trading Company.
+        All Rights Reserved.
+    </p>
+
+</footer>
+ <script>
+function toggleMenu() {
+    const menu = document.getElementById("mobileMenu");
+
+    menu.classList.toggle("active");
+}
+</script>
+
+
+
+</body>
+
+</html>

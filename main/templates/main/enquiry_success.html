@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Enquiry Submitted</title>
+
+    <link rel="stylesheet"
+          href="{% static 'main/style.css' %}">
+
+</head>
+
+<body>
+
+<section class="empty-cart">
+
+    <h1>Thank You! ✅</h1>
+
+    <h2>
+        Your enquiry has been submitted successfully.
+    </h2>
+
+    <p>
+        Your enquiry has been saved.
+        You can now send the details to our team through WhatsApp.
+    </p>
+
+    <br>
+
+    <a href="{{ whatsapp_url }}"
+       target="_blank"
+       class="whatsapp-product-btn">
+
+        📲 Send Enquiry on WhatsApp
+
+    </a>
+
+    <br><br>
+
+    <a href="/products/"
+       class="primary-btn">
+
+        Continue Browsing
+
+    </a>
+
+</section>
+
+</body>
+
+</html>

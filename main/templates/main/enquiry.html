@@ -1,0 +1,236 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Request Enquiry | 3D Tech Trading Company</title>
+
+    <link rel="stylesheet"
+          href="{% static 'main/style.css' %}">
+
+</head>
+
+<body>
+
+<<header class="header">
+
+    <a href="/" class="logo">
+    <img src="{% static 'main/logo.png' %}" alt="3D Tech Trading Company">
+    <span>3D Tech Trading Company</span>
+</a>
+
+    <nav class="main-nav">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="{% url 'products' %}">
+            Products
+        </a>
+
+       <a href="{% url 'categories' %}">
+    Categories
+</a>
+
+        <a href="{% url 'about' %}">
+    About Us
+</a>
+
+        <a href="{% url 'contact' %}">
+    Contact
+</a>
+
+        <a href="{% url 'cart' %}">
+            🛒 Cart ({{ cart_count }})
+        </a>
+        <a href="{% url 'admin:login' %}">
+    ⚙ Admin Login
+</a>
+
+    </nav>
+
+    <a class="whatsapp-btn"
+       href="https://wa.me/917411837088"
+       target="_blank">
+        📲 WhatsApp
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()" type="button">
+    ☰
+</button>
+
+</header>
+<div class="mobile-menu" id="mobileMenu">
+
+    <a href="{% url 'home' %}">Home</a>
+
+    <a href="{% url 'products' %}">Products</a>
+
+    <a href="{% url 'categories' %}">
+    Categories
+</a>
+
+   <a href="{% url 'about' %}">
+    About Us
+</a>
+
+    <a href="{% url 'contact' %}">
+    Contact
+</a>
+
+    <a href="{% url 'cart' %}">
+        🛒 Cart ({{ cart_count }})
+    </a>
+
+    <a href="{% url 'admin:login' %}">
+        ⚙ Admin Login
+    </a>
+
+    <a href="https://wa.me/917411837088" target="_blank">
+        📲 WhatsApp
+    </a>
+
+</div>
+
+
+<section class="enquiry-page">
+
+    <div class="section-title">
+
+        <p>SEND YOUR REQUIREMENT</p>
+
+        <h1>Request a Quotation</h1>
+
+        <span>
+            Tell us what you need and our team will contact you.
+        </span>
+
+    </div>
+
+
+    <form method="POST"
+          class="enquiry-form">
+
+        {% csrf_token %}
+
+
+        <div class="form-group">
+
+            <label>
+                Name *
+            </label>
+
+            <input type="text"
+                   name="name"
+                   required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Company
+            </label>
+
+            <input type="text"
+                   name="company">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Mobile / WhatsApp *
+            </label>
+
+            <input type="tel"
+                   name="phone"
+                   required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Email
+            </label>
+
+            <input type="email"
+                   name="email">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Location
+            </label>
+
+            <input type="text"
+                   name="location">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Requirement / Message
+            </label>
+
+            <textarea name="message"
+                      rows="5"></textarea>
+
+        </div>
+
+
+        <button type="submit"
+                class="primary-btn">
+
+            Submit Enquiry
+
+        </button>
+
+    </form>
+
+</section>
+
+
+<footer>
+
+    <h3>
+        3D Tech Trading Company
+    </h3>
+
+    <p>
+        Industrial Products & Engineering Solutions
+    </p>
+
+    <p>
+        © 2026 3D Tech Trading Company.
+        All Rights Reserved.
+    </p>
+
+</footer>
+ <script>
+function toggleMenu() {
+    const menu = document.getElementById("mobileMenu");
+
+    menu.classList.toggle("active");
+}
+</script>
+
+</body>
+
+</html>
