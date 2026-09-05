@@ -2,8 +2,10 @@ from django.db import models
 
 
 class Category(models.Model):
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
     name = models.CharField(max_length=200)
-
     image = models.ImageField(
         upload_to='categories/',
         blank=True,
@@ -28,6 +30,9 @@ class Product(models.Model):
         return self.name
 
 class Enquiry(models.Model):
+    class Meta:
+        verbose_name = "Enquiry"
+        verbose_name_plural = "Enquiries"
     name = models.CharField(max_length=150)
     company = models.CharField(max_length=150, blank=True)
     phone = models.CharField(max_length=30)

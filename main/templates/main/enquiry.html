@@ -1,3 +1,4 @@
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -12,19 +13,700 @@
 
     <title>Request Enquiry | 3D Tech Trading Company</title>
 
-    <link rel="stylesheet"
-          href="{% static 'main/style.css' %}">
+
+    <style>
+
+        /* =========================
+           GLOBAL
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #e7e9eb;
+            color: #292d31;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            min-height: 78px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 10px 35px;
+
+            background: #292d31;
+
+            border-bottom: 3px solid #c62828;
+
+            z-index: 9999;
+
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* LOGO */
+
+        .logo {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: white;
+
+            font-size: 19px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+        .logo img {
+            width: 48px;
+            height: 48px;
+
+            object-fit: contain;
+
+            border-radius: 6px;
+        }
+
+
+        /* NAVIGATION */
+
+        .main-nav {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            margin-left: auto;
+        }
+
+
+        .main-nav a {
+            color: #e1e5e8 !important;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            position: relative;
+
+            padding: 7px 0;
+
+            transition: 0.25s;
+        }
+
+
+        .main-nav a:hover {
+            color: #ffffff !important;
+        }
+
+
+        .main-nav a::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            bottom: 0;
+
+            width: 0;
+
+            height: 2px;
+
+            background: #d71920;
+
+            transition: 0.25s;
+        }
+
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+
+
+        /* =================================================
+           WHATSAPP BUTTON
+        ================================================= */
+
+        .whatsapp-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 10px 15px;
+
+            background: #09a545 !important;
+
+            color: #ffffff !important;
+
+            text-decoration: none;
+
+            border-radius: 5px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+
+        .whatsapp-btn:hover {
+            background: #b9141a !important;
+
+            transform: translateY(-2px);
+        }
+
+
+        .whatsapp-btn::after {
+            display: none !important;
+        }
+
+        /* MOBILE MENU BUTTON */
+
+        .menu-toggle {
+            display: none;
+
+            margin-left: auto;
+
+            background: transparent;
+
+            border: none;
+
+            color: white;
+
+            font-size: 28px;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           MOBILE MENU
+        ========================= */
+
+        .mobile-menu {
+            display: none;
+
+            position: fixed;
+
+            top: 78px;
+
+            left: 0;
+
+            width: 100%;
+
+            background: #292d31;
+
+            border-top: 1px solid #5c6267;
+
+            z-index: 9998;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+
+            padding: 15px 25px;
+
+            color: white;
+
+            border-bottom: 1px solid #454a4f;
+
+            font-weight: 600;
+        }
+
+        .mobile-menu a:hover {
+            background: #3b4146;
+
+            color: #e53935;
+        }
+
+
+        /* =========================
+           ENQUIRY PAGE
+        ========================= */
+
+        .enquiry-page {
+
+            min-height: calc(100vh - 200px);
+
+            padding: 125px 20px 70px;
+        }
+
+
+        /* =========================
+           SECTION TITLE
+        ========================= */
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 40px;
+        }
+
+        .section-title p {
+
+            color: #c62828;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 10px;
+        }
+
+        .section-title h1 {
+
+            color: #292d31;
+
+            font-size: 38px;
+
+            font-weight: 800;
+
+            margin-bottom: 20px;
+
+            position: relative;
+
+            display: inline-block;
+        }
+
+        .section-title h1::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+
+            bottom: -12px;
+
+            transform: translateX(-50%);
+
+            width: 55px;
+
+            height: 4px;
+
+            background: #c62828;
+
+            border-radius: 3px;
+        }
+
+        .section-title span {
+
+            display: block;
+
+            margin-top: 20px;
+
+            color: #5c6267;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           ENQUIRY FORM
+        ========================= */
+
+        .enquiry-form {
+
+            max-width: 760px;
+
+            margin: 0 auto;
+
+            background: white;
+
+            padding: 40px;
+
+            border-top: 4px solid #c62828;
+
+            border-radius: 8px;
+
+            box-shadow: 0 6px 25px rgba(0,0,0,0.10);
+        }
+
+
+        /* FORM GROUP */
+
+        .form-group {
+
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #292d31;
+
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+
+        /* INPUTS */
+
+        .form-group input,
+        .form-group textarea {
+
+            width: 100%;
+
+            padding: 13px 15px;
+
+            border: 1px solid #c8cdd1;
+
+            border-radius: 5px;
+
+            background: #f5f6f7;
+
+            color: #292d31;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition: 0.3s;
+        }
+
+        .form-group input {
+
+            height: 46px;
+        }
+
+        .form-group textarea {
+
+            min-height: 120px;
+
+            resize: vertical;
+        }
+
+
+        /* INPUT FOCUS */
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+
+            border-color: #c62828;
+
+            background: white;
+
+            box-shadow: 0 0 0 2px rgba(198, 40, 40, 0.10);
+        }
+
+
+        /* PLACEHOLDER */
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+
+            color: #8a9095;
+        }
+
+
+        /* =========================
+           SUBMIT BUTTON
+        ========================= */
+
+        .primary-btn {
+
+            width: 100%;
+
+            border: none;
+
+            background: #c62828;
+
+            color: white;
+
+            padding: 14px 22px;
+
+            border-radius: 5px;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .primary-btn:hover {
+
+            background: #a91f1f;
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 5px 15px rgba(198,40,40,0.25);
+        }
+
+
+        /* =========================
+           FORM NOTE
+        ========================= */
+
+        .form-note {
+
+            max-width: 760px;
+
+            margin: 20px auto 0;
+
+            text-align: center;
+
+            color: #5c6267;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            background: #292d31;
+
+            color: #e7e9eb;
+
+            text-align: center;
+
+            padding: 35px 20px;
+
+            border-top: 3px solid #c62828;
+        }
+
+        footer h3 {
+
+            color: white;
+
+            font-size: 19px;
+
+            margin-bottom: 8px;
+        }
+
+        footer p {
+
+            font-size: 13px;
+
+            margin: 6px 0;
+
+            color: #c8cdd1;
+        }
+
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .main-nav {
+                gap: 13px;
+            }
+
+            .main-nav a {
+                font-size: 13px;
+            }
+
+            .whatsapp-btn {
+
+                margin-left: 12px;
+
+                padding: 9px 12px;
+            }
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            .header {
+
+                min-height: 70px;
+
+                padding: 8px 18px;
+            }
+
+            .logo {
+
+                font-size: 15px;
+            }
+
+            .logo img {
+
+                width: 42px;
+                height: 42px;
+            }
+
+            .main-nav,
+            .whatsapp-btn {
+
+                display: none;
+            }
+
+            .menu-toggle {
+
+                display: block;
+            }
+
+            .mobile-menu {
+
+                top: 70px;
+            }
+
+            .enquiry-page {
+
+                padding: 110px 18px 50px;
+            }
+
+            .section-title {
+
+                margin-bottom: 30px;
+            }
+
+            .section-title p {
+
+                font-size: 11px;
+
+                letter-spacing: 2px;
+            }
+
+            .section-title h1 {
+
+                font-size: 30px;
+            }
+
+            .section-title span {
+
+                font-size: 14px;
+
+                padding: 0 10px;
+            }
+
+            .enquiry-form {
+
+                padding: 28px 20px;
+            }
+
+        }
+
+
+        /* =========================
+           SMALL MOBILE
+        ========================= */
+
+        @media (max-width: 450px) {
+
+            .logo span {
+
+                font-size: 13px;
+            }
+
+            .section-title h1 {
+
+                font-size: 27px;
+            }
+
+            .enquiry-form {
+
+                padding: 25px 17px;
+            }
+
+            .form-group label {
+
+                font-size: 13px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+
+                font-size: 13px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
-<<header class="header">
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
 
     <a href="/" class="logo">
-    <img src="{% static 'main/logo.png' %}" alt="3D Tech Trading Company">
-    <span>3D Tech Trading Company</span>
-</a>
+
+        <img src="{% static 'main/logo.png' %}"
+             alt="3D Tech Trading Company">
+
+        <span>
+            3D Tech Trading Company
+        </span>
+
+    </a>
+
 
     <nav class="main-nav">
 
@@ -32,58 +714,80 @@
             Home
         </a>
 
+        <a href="{% url 'categories' %}">
+            Categories
+        </a>
+
         <a href="{% url 'products' %}">
             Products
         </a>
 
-       <a href="{% url 'categories' %}">
-    Categories
-</a>
-
         <a href="{% url 'about' %}">
-    About Us
-</a>
+            About Us
+        </a>
 
         <a href="{% url 'contact' %}">
-    Contact
-</a>
+            Contact
+        </a>
 
         <a href="{% url 'cart' %}">
             🛒 Cart ({{ cart_count }})
         </a>
+
         <a href="{% url 'admin:login' %}">
-    ⚙ Admin Login
-</a>
+            ⚙ Admin Login
+        </a>
 
     </nav>
+
 
     <a class="whatsapp-btn"
        href="https://wa.me/917411837088"
        target="_blank">
+
         📲 WhatsApp
+
     </a>
-    <button class="menu-toggle" onclick="toggleMenu()" type="button">
-    ☰
-</button>
+
+
+    <button class="menu-toggle"
+            onclick="toggleMenu()"
+            type="button">
+
+        ☰
+
+    </button>
+
 
 </header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
 <div class="mobile-menu" id="mobileMenu">
 
-    <a href="{% url 'home' %}">Home</a>
 
-    <a href="{% url 'products' %}">Products</a>
+    <a href="{% url 'home' %}">
+        Home
+    </a>
 
     <a href="{% url 'categories' %}">
-    Categories
-</a>
+        Categories
+    </a>
 
-   <a href="{% url 'about' %}">
-    About Us
-</a>
+    <a href="{% url 'products' %}">
+        Products
+    </a>
+
+    <a href="{% url 'about' %}">
+        About Us
+    </a>
 
     <a href="{% url 'contact' %}">
-    Contact
-</a>
+        Contact
+    </a>
 
     <a href="{% url 'cart' %}">
         🛒 Cart ({{ cart_count }})
@@ -93,20 +797,33 @@
         ⚙ Admin Login
     </a>
 
-    <a href="https://wa.me/917411837088" target="_blank">
+    <a href="https://wa.me/917411837088"
+       target="_blank">
+
         📲 WhatsApp
+
     </a>
+
 
 </div>
 
 
+<!-- =========================
+     ENQUIRY
+========================= -->
+
 <section class="enquiry-page">
+
 
     <div class="section-title">
 
-        <p>SEND YOUR REQUIREMENT</p>
+        <p>
+            SEND YOUR REQUIREMENT
+        </p>
 
-        <h1>Request a Quotation</h1>
+        <h1>
+            Request a Quotation
+        </h1>
 
         <span>
             Tell us what you need and our team will contact you.
@@ -114,6 +831,8 @@
 
     </div>
 
+
+    <!-- ENQUIRY FORM -->
 
     <form method="POST"
           class="enquiry-form">
@@ -129,6 +848,7 @@
 
             <input type="text"
                    name="name"
+                   placeholder="Enter your name"
                    required>
 
         </div>
@@ -141,7 +861,8 @@
             </label>
 
             <input type="text"
-                   name="company">
+                   name="company"
+                   placeholder="Enter company name">
 
         </div>
 
@@ -154,6 +875,7 @@
 
             <input type="tel"
                    name="phone"
+                   placeholder="Enter mobile number"
                    required>
 
         </div>
@@ -166,7 +888,8 @@
             </label>
 
             <input type="email"
-                   name="email">
+                   name="email"
+                   placeholder="Enter email address">
 
         </div>
 
@@ -178,7 +901,8 @@
             </label>
 
             <input type="text"
-                   name="location">
+                   name="location"
+                   placeholder="City / State">
 
         </div>
 
@@ -190,7 +914,8 @@
             </label>
 
             <textarea name="message"
-                      rows="5"></textarea>
+                      rows="5"
+                      placeholder="Tell us about the product or requirement you need..."></textarea>
 
         </div>
 
@@ -202,10 +927,24 @@
 
         </button>
 
+
     </form>
+
+
+    <div class="form-note">
+
+        Our team will review your requirement and contact you
+        with the appropriate product details and quotation.
+
+    </div>
+
 
 </section>
 
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
@@ -223,14 +962,22 @@
     </p>
 
 </footer>
- <script>
+
+
+<script>
+
 function toggleMenu() {
+
     const menu = document.getElementById("mobileMenu");
 
     menu.classList.toggle("active");
+
 }
+
 </script>
+
 
 </body>
 
 </html>
+

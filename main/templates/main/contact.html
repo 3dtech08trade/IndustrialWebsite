@@ -1,3 +1,4 @@
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -12,38 +13,968 @@
 
     <title>Contact Us | 3D Tech Trading Company</title>
 
-    <link rel="stylesheet"
-          href="{% static 'main/style.css' %}">
+
+    <!-- =================================================
+         INTERNAL CSS
+    ================================================== -->
+
+    <style>
+
+        /* =================================================
+           BASIC
+        ================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            background: #e7e9eb;
+
+            color: #25282b;
+        }
+
+
+        /* =================================================
+           FIXED HEADER
+        ================================================== */
+
+        .header {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            min-height: 78px;
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 10px 35px;
+
+            background: #292d31;
+
+            border-bottom: 3px solid #c62828;
+
+            z-index: 9999;
+
+            box-shadow:
+                0 3px 15px rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* =================================================
+           LOGO
+        ================================================== */
+
+        .logo {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            text-decoration: none;
+
+            color: #ffffff;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+
+        .logo img {
+            width: 48px;
+            height: 48px;
+
+            object-fit: contain;
+
+            border-radius: 6px;
+        }
+
+
+        /* =================================================
+           DESKTOP NAVIGATION
+        ================================================== */
+
+        .main-nav {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            margin-left: auto;
+        }
+
+
+        .main-nav a {
+            color: #e1e5e8 !important;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            position: relative;
+
+            padding: 7px 0;
+
+            transition: 0.25s;
+        }
+
+
+        .main-nav a:hover {
+            color: #ffffff !important;
+        }
+
+
+        .main-nav a::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            bottom: 0;
+
+            width: 0;
+
+            height: 2px;
+
+            background: #d71920;
+
+            transition: 0.25s;
+        }
+
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+
+
+        /* =================================================
+           WHATSAPP BUTTON
+        ================================================= */
+
+        .whatsapp-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 10px 15px;
+
+            background: #09a545 !important;
+
+            color: #ffffff !important;
+
+            text-decoration: none;
+
+            border-radius: 5px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+
+        .whatsapp-btn:hover {
+            background: #b9141a !important;
+
+            transform: translateY(-2px);
+        }
+
+
+        .whatsapp-btn::after {
+            display: none !important;
+        }
+
+
+        /* =================================================
+           MOBILE BUTTON
+        ================================================== */
+
+        .menu-toggle {
+            display: none;
+
+            margin-left: auto;
+
+            background: transparent;
+
+            border: none;
+
+            color: white;
+
+            font-size: 28px;
+
+            cursor: pointer;
+        }
+
+
+        /* =================================================
+           MOBILE MENU
+        ================================================== */
+
+        .mobile-menu {
+            display: none;
+
+            position: fixed;
+
+            top: 78px;
+
+            left: 0;
+
+            width: 100%;
+
+            background: #292d31;
+
+            border-top: 1px solid #555b60;
+
+            z-index: 9998;
+
+            padding: 10px 20px 20px;
+
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+
+        .mobile-menu.active {
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        .mobile-menu a {
+            color: #ffffff;
+
+            text-decoration: none;
+
+            padding: 14px 10px;
+
+            border-bottom: 1px solid
+                rgba(255,255,255,0.10);
+
+            font-size: 15px;
+
+            transition: 0.3s;
+        }
+
+
+        .mobile-menu a:hover {
+            color: #ff3b3b;
+        }
+
+
+        /* =================================================
+           CONTACT PAGE
+        ================================================== */
+
+        .contact-page {
+
+            padding-top: 78px;
+
+            min-height: 100vh;
+
+            background: #e7e9eb;
+        }
+
+
+        /* =================================================
+           CONTACT HERO
+        ================================================== */
+
+        .contact-hero {
+
+            position: relative;
+
+            padding: 90px 20px 115px;
+
+            text-align: center;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #292d31,
+                    #3b4146
+                );
+        }
+
+
+        /* Steel decorative circle */
+
+        .contact-hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+
+            height: 500px;
+
+            border: 1px solid
+                rgba(192, 198, 203, 0.15);
+
+            border-radius: 50%;
+
+            top: -250px;
+
+            left: -150px;
+        }
+
+
+        /* Red decorative circle */
+
+        .contact-hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 420px;
+
+            height: 420px;
+
+            border: 2px solid
+                rgba(198, 40, 40, 0.18);
+
+            border-radius: 50%;
+
+            right: -160px;
+
+            bottom: -260px;
+        }
+
+
+        /* =================================================
+           CONTACT LABEL
+        ================================================== */
+
+        .contact-label {
+
+            position: relative;
+
+            z-index: 2;
+
+            color: #e53935;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =================================================
+           CONTACT HEADING
+        ================================================== */
+
+        .contact-hero h1 {
+
+            position: relative;
+
+            z-index: 2;
+
+            margin: 0 auto 20px;
+
+            max-width: 850px;
+
+            color: #ffffff;
+
+            font-size: 46px;
+
+            line-height: 1.2;
+
+            font-weight: 800;
+        }
+
+
+        /* =================================================
+           CONTACT INTRO
+        ================================================== */
+
+        .contact-intro {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 700px;
+
+            margin: auto;
+
+            color: #d2d6d9;
+
+            font-size: 17px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =================================================
+           CONTACT CONTENT
+        ================================================== */
+
+        .contact-content {
+
+            position: relative;
+
+            z-index: 5;
+
+            max-width: 1100px;
+
+            margin: -50px auto 0;
+
+            padding: 0 20px 80px;
+        }
+
+
+        /* =================================================
+           CONTACT CARD
+        ================================================== */
+
+        .contact-card {
+
+            background: #ffffff;
+
+            padding: 50px;
+
+            border-radius: 10px;
+
+            border: 1px solid #c8cdd1;
+
+            border-top: 4px solid #c62828;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,0.12);
+
+            text-align: center;
+        }
+
+
+        /* =================================================
+           CONTACT ICON
+        ================================================== */
+
+        .contact-icon {
+
+            width: 70px;
+
+            height: 70px;
+
+            margin: 0 auto 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #3b4146;
+
+            border: 3px solid #c62828;
+
+            color: #ffffff;
+
+            font-size: 30px;
+        }
+
+
+        /* =================================================
+           CARD HEADING
+        ================================================== */
+
+        .contact-card h2 {
+
+            margin: 0 0 15px;
+
+            color: #292d31;
+
+            font-size: 30px;
+        }
+
+
+        /* Red line */
+
+        .contact-card h2::after {
+
+            content: "";
+
+            display: block;
+
+            width: 55px;
+
+            height: 3px;
+
+            background: #c62828;
+
+            margin: 12px auto 0;
+        }
+
+
+        /* =================================================
+           CARD DESCRIPTION
+        ================================================== */
+
+        .contact-description {
+
+            max-width: 650px;
+
+            margin: 0 auto 35px;
+
+            color: #5c6267;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =================================================
+           CONTACT DETAILS GRID
+        ================================================== */
+
+        .contact-details {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin: 30px 0 40px;
+        }
+
+
+        /* =================================================
+           DETAIL BOX
+        ================================================== */
+
+        .contact-box {
+
+            padding: 28px 18px;
+
+            background: #e7e9eb;
+
+            border: 1px solid #c8cdd1;
+
+            border-radius: 8px;
+
+            transition: 0.3s;
+        }
+
+
+        .contact-box:hover {
+
+            transform: translateY(-4px);
+
+            background: #dde0e2;
+
+            border-color: #c62828;
+
+            box-shadow:
+                0 8px 20px
+                rgba(0,0,0,0.08);
+        }
+
+
+        /* =================================================
+           CONTACT BOX ICON
+        ================================================== */
+
+        .contact-box-icon {
+
+            font-size: 25px;
+
+            margin-bottom: 12px;
+        }
+
+
+        /* =================================================
+           CONTACT BOX TITLE
+        ================================================== */
+
+        .contact-box strong {
+
+            display: block;
+
+            margin-bottom: 10px;
+
+            color: #292d31;
+
+            font-size: 16px;
+        }
+
+
+        /* =================================================
+           CONTACT BOX TEXT
+        ================================================== */
+
+        .contact-box p {
+
+            margin: 0;
+
+            color: #5c6267;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            overflow-wrap: break-word;
+        }
+
+
+        /* =================================================
+           RED WHATSAPP BUTTON
+        ================================================== */
+
+        .contact-whatsapp {
+
+            display: inline-block;
+
+            padding: 14px 28px;
+
+            background: #c62828;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            border-radius: 5px;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+
+        .contact-whatsapp:hover {
+
+            background: #a91f1f;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 7px 18px
+                rgba(198,40,40,0.25);
+        }
+
+
+        /* =================================================
+           FOOTER
+        ================================================== */
+
+        footer {
+
+            padding: 40px 20px;
+
+            text-align: center;
+
+            background: #292d31;
+
+            border-top: 3px solid #c62828;
+
+            color: #d2d6d9;
+        }
+
+
+        footer h3 {
+
+            margin: 0 0 10px;
+
+            color: #ffffff;
+
+            font-size: 20px;
+        }
+
+
+        footer p {
+
+            margin: 7px 0;
+
+            font-size: 14px;
+
+            color: #aeb5ba;
+        }
+
+
+        /* =================================================
+           TABLET
+        ================================================== */
+
+        @media (max-width: 1100px) {
+
+            .header {
+
+                padding: 10px 20px;
+            }
+
+
+            .main-nav a {
+
+                padding: 9px 7px;
+
+                font-size: 13px;
+            }
+
+
+            .whatsapp-btn {
+
+                padding: 10px 12px;
+
+                margin-left: 8px;
+            }
+
+        }
+
+
+        /* =================================================
+           MOBILE
+        ================================================== */
+
+        @media (max-width: 768px) {
+
+            .header {
+
+                min-height: 70px;
+
+                padding: 8px 15px;
+            }
+
+
+            .logo span {
+
+                font-size: 15px;
+            }
+
+
+            .logo img {
+
+                width: 42px;
+
+                height: 42px;
+            }
+
+
+            .main-nav,
+            .whatsapp-btn {
+
+                display: none;
+            }
+
+
+            .menu-toggle {
+
+                display: block;
+            }
+
+
+            .mobile-menu {
+
+                top: 70px;
+            }
+
+
+            .contact-page {
+
+                padding-top: 70px;
+            }
+
+
+            .contact-hero {
+
+                padding: 65px 20px 85px;
+            }
+
+
+            .contact-label {
+
+                font-size: 11px;
+
+                letter-spacing: 2px;
+            }
+
+
+            .contact-hero h1 {
+
+                font-size: 34px;
+
+                line-height: 1.25;
+            }
+
+
+            .contact-intro {
+
+                font-size: 15px;
+
+                line-height: 1.7;
+            }
+
+
+            .contact-content {
+
+                margin-top: -35px;
+
+                padding-left: 15px;
+
+                padding-right: 15px;
+
+                padding-bottom: 50px;
+            }
+
+
+            .contact-card {
+
+                padding: 35px 22px;
+            }
+
+
+            .contact-card h2 {
+
+                font-size: 26px;
+            }
+
+
+            .contact-description {
+
+                font-size: 15px;
+            }
+
+
+            .contact-details {
+
+                grid-template-columns: 1fr;
+
+                gap: 15px;
+            }
+
+
+            .contact-box {
+
+                padding: 23px 18px;
+            }
+
+        }
+
+
+        /* =================================================
+           SMALL MOBILE
+        ================================================== */
+
+        @media (max-width: 450px) {
+
+            .logo span {
+
+                font-size: 13px;
+            }
+
+
+            .contact-hero h1 {
+
+                font-size: 29px;
+            }
+
+
+            .contact-label {
+
+                font-size: 10px;
+
+                letter-spacing: 1.5px;
+            }
+
+
+            .contact-icon {
+
+                width: 60px;
+
+                height: 60px;
+
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     HEADER / NAVBAR
+===================================================== -->
 
 <header class="header">
 
-    <a href="/" class="logo">
+
+    <!-- LOGO -->
+
+    <a href="{% url 'home' %}"
+       class="logo">
 
         <img src="{% static 'main/logo.png' %}"
              alt="3D Tech Trading Company">
 
-        <span>3D Tech Trading Company</span>
+        <span>
+            3D Tech Trading Company
+        </span>
 
     </a>
 
 
+    <!-- DESKTOP NAVIGATION -->
+
     <nav class="main-nav">
 
-        <a href="/">Home</a>
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <a href="{% url 'categories' %}">
+            Categories
+        </a>
 
         <a href="{% url 'products' %}">
             Products
         </a>
 
-       <a href="{% url 'categories' %}">
-    Categories
-</a>
-
-         <a href="{% url 'about' %}">
+        <a href="{% url 'about' %}">
             About Us
         </a>
 
@@ -62,6 +993,8 @@
     </nav>
 
 
+    <!-- WHATSAPP -->
+
     <a class="whatsapp-btn"
        href="https://wa.me/917411837088"
        target="_blank">
@@ -71,6 +1004,8 @@
     </a>
 
 
+    <!-- MOBILE MENU BUTTON -->
+
     <button class="menu-toggle"
             onclick="toggleMenu()"
             type="button">
@@ -79,274 +1014,288 @@
 
     </button>
 
+
 </header>
 
 
-<!-- MOBILE MENU -->
+
+<!-- =====================================================
+     MOBILE MENU
+===================================================== -->
 
 <div class="mobile-menu"
      id="mobileMenu">
 
-    <a href="/">Home</a>
+
+    <a href="{% url 'home' %}">
+        Home
+    </a>
+
+
+    <a href="{% url 'categories' %}">
+        Categories
+    </a>
+
 
     <a href="{% url 'products' %}">
         Products
     </a>
 
-    <a href="{% url 'categories' %}">
-    Categories
-</a>
- <a href="{% url 'about' %}">
-            About Us
-        </a>
+
+    <a href="{% url 'about' %}">
+        About Us
+    </a>
+
+
     <a href="{% url 'contact' %}">
         Contact
     </a>
+
 
     <a href="{% url 'cart' %}">
         🛒 Cart ({{ cart_count }})
     </a>
 
+
     <a href="{% url 'admin:login' %}">
         ⚙ Admin Login
+    </a>
+
+
+    <a href="https://wa.me/917411837088"
+       target="_blank">
+
+        📲 WhatsApp
+
     </a>
 
 </div>
 
 
-<!-- CONTACT PAGE -->
 
-<main style="
-    width: 100%;
-    min-height: 650px;
-    padding: 80px 20px;
-    background: #f5f7fa;
-    box-sizing: border-box;
-">
+<!-- =====================================================
+     CONTACT PAGE
+===================================================== -->
 
-    <div style="
-        width: 100%;
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 60px;
-        background: #ffffff;
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        box-sizing: border-box;
-        text-align: center;
-    ">
+<main class="contact-page">
 
-        <!-- TITLE -->
 
-        <div style="
-            color: #0b5ed7;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-        ">
-            CONTACT US
+    <!-- =================================================
+         HERO
+    ================================================== -->
+
+    <section class="contact-hero">
+
+
+        <div class="contact-label">
+
+            CONTACT 3D TECH TRADING COMPANY
+
         </div>
 
-        <h1 style="
-            margin: 0 0 20px;
-            font-size: 42px;
-            line-height: 1.2;
-            color: #17202a;
-        ">
+
+        <h1>
+
             Need an Industrial Product?
+
         </h1>
 
-        <p style="
-            max-width: 650px;
-            margin: 0 auto 40px;
-            color: #555;
-            font-size: 17px;
-            line-height: 1.8;
-        ">
+
+        <p class="contact-intro">
+
             Contact our team for product information,
             availability and quotations.
+
         </p>
 
 
-        <!-- CONTACT DETAILS -->
+    </section>
 
-        <div style="
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin: 30px 0 40px;
-        ">
 
-            <!-- PHONE -->
 
-            <div style="
-                padding: 25px 15px;
-                background: #f5f7fa;
-                border: 1px solid #e5e7eb;
-                border-radius: 10px;
-                box-sizing: border-box;
-            ">
+    <!-- =================================================
+         CONTACT CONTENT
+    ================================================== -->
 
-                <strong style="
-                    display: block;
-                    margin-bottom: 10px;
-                    font-size: 16px;
-                    color: #17202a;
-                ">
-                    📞 Phone
-                </strong>
+    <section class="contact-content">
 
-                <p style="
-                    margin: 0;
-                    color: #555;
-                    line-height: 1.6;
-                ">
-                    7411837088
-                </p>
+
+        <div class="contact-card">
+
+
+            <!-- ICON -->
+
+            <div class="contact-icon">
+
+                ☎
 
             </div>
 
 
-            <!-- EMAIL -->
+            <h2>
 
-            <div style="
-                padding: 25px 15px;
-                background: #f5f7fa;
-                border: 1px solid #e5e7eb;
-                border-radius: 10px;
-                box-sizing: border-box;
-            ">
+                Get In Touch
 
-                <strong style="
-                    display: block;
-                    margin-bottom: 10px;
-                    font-size: 16px;
-                    color: #17202a;
-                ">
-                    📧 Email
-                </strong>
+            </h2>
 
-                <p style="
-                    margin: 0;
-                    color: #555;
-                    line-height: 1.6;
-                    overflow-wrap: break-word;
-                ">
-                    3dtech08@gmail.com
-                </p>
+
+            <p class="contact-description">
+
+                Have a requirement or looking for a specific
+                industrial product? Contact us and our team
+                will be happy to assist you.
+
+            </p>
+
+
+
+            <!-- =================================================
+                 CONTACT DETAILS
+            ================================================== -->
+
+            <div class="contact-details">
+
+
+                <!-- PHONE -->
+
+                <div class="contact-box">
+
+                    <div class="contact-box-icon">
+
+                        📞
+
+                    </div>
+
+                    <strong>
+
+                        Phone
+
+                    </strong>
+
+                    <p>
+
+                        7411837088
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="contact-box">
+
+                    <div class="contact-box-icon">
+
+                        📧
+
+                    </div>
+
+                    <strong>
+
+                        Email
+
+                    </strong>
+
+                    <p>
+
+                        3dtech08@gmail.com
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- LOCATION -->
+
+                <div class="contact-box">
+
+                    <div class="contact-box-icon">
+
+                        📍
+
+                    </div>
+
+                    <strong>
+
+                        Location
+
+                    </strong>
+
+                    <p>
+
+                        Udupi, Karnataka, India
+
+                    </p>
+
+                </div>
+
 
             </div>
 
 
-            <!-- LOCATION -->
 
-            <div style="
-                padding: 25px 15px;
-                background: #f5f7fa;
-                border: 1px solid #e5e7eb;
-                border-radius: 10px;
-                box-sizing: border-box;
-            ">
+            <!-- =================================================
+                 WHATSAPP
+            ================================================== -->
 
-                <strong style="
-                    display: block;
-                    margin-bottom: 10px;
-                    font-size: 16px;
-                    color: #17202a;
-                ">
-                    📍 Location
-                </strong>
+            <a href="https://wa.me/917411837088"
+               target="_blank"
+               class="contact-whatsapp">
 
-                <p style="
-                    margin: 0;
-                    color: #555;
-                    line-height: 1.6;
-                ">
-                    Udupi, Karnataka, India
-                </p>
+                📲 Contact on WhatsApp
 
-            </div>
+            </a>
+
 
         </div>
 
 
-        <!-- WHATSAPP BUTTON -->
+    </section>
 
-        <a href="https://wa.me/917411837088"
-           target="_blank"
-           style="
-               display: inline-block;
-               padding: 14px 25px;
-               background: #128c7e;
-               color: white;
-               text-decoration: none;
-               border-radius: 6px;
-               font-size: 15px;
-               font-weight: 700;
-               box-sizing: border-box;
-           ">
-
-            📲 Contact on WhatsApp
-
-        </a>
-
-    </div>
 
 </main>
 
 
-<!-- MOBILE RESPONSIVE -->
 
-<style>
-
-@media (max-width: 600px) {
-
-    main {
-        padding: 40px 15px !important;
-        min-height: auto !important;
-        overflow-x: hidden !important;
-    }
-
-    main > div {
-        padding: 35px 20px !important;
-    }
-
-    main h1 {
-        font-size: 28px !important;
-    }
-
-    main > div > p {
-        font-size: 15px !important;
-        line-height: 1.7 !important;
-    }
-
-    main > div > div {
-        grid-template-columns: 1fr !important;
-    }
-
-}
-
-</style>
-
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
+
     <h3>
+
         3D Tech Trading Company
+
     </h3>
 
-    <p>
-        Industrial Products & Engineering Solutions
-    </p>
 
     <p>
+
+        Industrial Products & Engineering Solutions
+
+    </p>
+
+
+    <p>
+
         © 2026 3D Tech Trading Company.
         All Rights Reserved.
+
     </p>
+
 
 </footer>
 
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
 
 <script>
 
@@ -360,6 +1309,7 @@ function toggleMenu() {
 }
 
 </script>
+
 
 </body>
 

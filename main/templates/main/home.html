@@ -1,86 +1,1312 @@
+
 {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>3D Tech Trading Company | Industrial Products</title>
+    <title>3D Tech Trading Company | Industrial Products & Engineering Solutions</title>
 
-    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #e7e9eb;
+            color: #292d31;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 78px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 10px 35px;
+
+            background: #292d31;
+            border-bottom: 3px solid #c62828;
+
+            z-index: 9999;
+
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.25);
+        }
+
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            color: white;
+            font-size: 20px;
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+        .logo img {
+            width: 48px;
+            height: 48px;
+
+            object-fit: contain;
+
+            border-radius: 5px;
+        }
+
+
+        /* NAVIGATION */
+
+        .main-nav {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            margin-left: auto;
+        }
+
+
+        .main-nav a {
+            color: #e1e5e8 !important;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            position: relative;
+
+            padding: 7px 0;
+
+            transition: 0.25s;
+        }
+
+
+        .main-nav a:hover {
+            color: #ffffff !important;
+        }
+
+
+        .main-nav a::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            bottom: 0;
+
+            width: 0;
+
+            height: 2px;
+
+            background: #d71920;
+
+            transition: 0.25s;
+        }
+
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+
+
+        /* =================================================
+           WHATSAPP BUTTON
+        ================================================= */
+
+        .whatsapp-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 10px 15px;
+
+            background: #09a545 !important;
+
+            color: #ffffff !important;
+
+            text-decoration: none;
+
+            border-radius: 5px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+
+        .whatsapp-btn:hover {
+            background: #b9141a !important;
+
+            transform: translateY(-2px);
+        }
+
+
+        .whatsapp-btn::after {
+            display: none !important;
+        }
+
+
+
+        /* MOBILE BUTTON */
+
+        .menu-toggle {
+            display: none;
+
+            margin-left: auto;
+
+            border: none;
+            background: transparent;
+
+            color: white;
+
+            font-size: 28px;
+
+            cursor: pointer;
+        }
+
+
+        /* MOBILE MENU */
+
+        .mobile-menu {
+            display: none;
+
+            position: fixed;
+
+            top: 78px;
+            left: 0;
+
+            width: 100%;
+
+            background: #292d31;
+
+            border-top: 1px solid #3b4146;
+            border-bottom: 3px solid #c62828;
+
+            z-index: 9998;
+
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .mobile-menu.active {
+            display: flex;
+
+            flex-direction: column;
+        }
+
+        .mobile-menu a {
+            padding: 15px 25px;
+
+            color: white;
+
+            border-bottom: 1px solid #3b4146;
+
+            font-weight: 600;
+        }
+
+        .mobile-menu a:hover {
+            background: #3b4146;
+            color: #ff5a5a;
+        }
+
+
+        /* =========================
+           HERO SECTION
+        ========================= */
+
+        .hero-section {
+
+            min-height: 700px;
+
+            padding: 150px 7% 100px;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    115deg,
+                    rgba(41,45,49,0.98),
+                    rgba(59,65,70,0.94)
+                );
+        }
+
+
+        /* INDUSTRIAL BACKGROUND LINES */
+
+        .hero-section::before {
+            content: "";
+
+            position: absolute;
+
+            width: 600px;
+            height: 600px;
+
+            right: -200px;
+            top: -180px;
+
+            border: 80px solid rgba(255,255,255,0.025);
+
+            border-radius: 50%;
+        }
+
+        .hero-section::after {
+            content: "";
+
+            position: absolute;
+
+            width: 400px;
+            height: 400px;
+
+            right: 80px;
+            bottom: -250px;
+
+            border: 50px solid rgba(198,40,40,0.08);
+
+            border-radius: 50%;
+        }
+
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 850px;
+        }
+
+
+        .hero-label {
+            display: inline-block;
+
+            margin-bottom: 20px;
+
+            padding: 7px 13px;
+
+            background: rgba(198,40,40,0.12);
+
+            border-left: 4px solid #c62828;
+
+            color: #ff5a5a;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            letter-spacing: 2px;
+        }
+
+
+        .hero-content h1 {
+            color: white;
+
+            font-size: clamp(42px, 6vw, 72px);
+
+            line-height: 1.08;
+
+            font-weight: 800;
+
+            letter-spacing: -2px;
+
+            max-width: 850px;
+        }
+
+
+        .hero-content h1 span {
+            display: block;
+
+            color: #e53935;
+        }
+
+
+        .hero-description {
+            max-width: 700px;
+
+            margin-top: 25px;
+
+            color: #c8cdd1;
+
+            font-size: 18px;
+
+            line-height: 1.8;
+        }
+
+
+        .hero-buttons {
+            display: flex;
+
+            gap: 14px;
+
+            margin-top: 35px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .hero-primary-btn,
+        .hero-whatsapp-btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 50px;
+
+            padding: 13px 23px;
+
+            border-radius: 5px;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            transition: 0.25s;
+        }
+
+
+        .hero-primary-btn {
+            background: #c62828;
+            color: white;
+
+            box-shadow: 0 6px 18px rgba(198,40,40,0.25);
+        }
+
+        .hero-primary-btn:hover {
+            background: #a91f1f;
+
+            transform: translateY(-2px);
+        }
+
+
+        .hero-whatsapp-btn {
+            background: transparent;
+
+            border: 1px solid #70777d;
+
+            color: white;
+        }
+
+        .hero-whatsapp-btn:hover {
+            background: white;
+            color: #292d31;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* HERO BOTTOM STATS */
+
+        .hero-stats {
+            position: absolute;
+
+            bottom: 0;
+            right: 7%;
+
+            display: flex;
+
+            background: #292d31;
+
+            border-top: 3px solid #c62828;
+
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.18);
+        }
+
+
+        .hero-stat {
+            min-width: 150px;
+
+            padding: 18px 22px;
+
+            border-right: 1px solid #444a4f;
+
+            text-align: center;
+        }
+
+        .hero-stat:last-child {
+            border-right: none;
+        }
+
+        .hero-stat strong {
+            display: block;
+
+            color: white;
+
+            font-size: 22px;
+        }
+
+        .hero-stat span {
+            color: #aeb4b8;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================
+           SECTION COMMON
+        ========================= */
+
+        .featured-section {
+            padding: 90px 6%;
+            background: #e7e9eb;
+        }
+
+
+        .section-heading {
+            text-align: center;
+
+            max-width: 750px;
+
+            margin: 0 auto 50px;
+        }
+
+
+        .section-label,
+        .small-title {
+            color: #c62828;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+        }
+
+
+        .section-heading h2 {
+            margin-top: 8px;
+
+            color: #292d31;
+
+            font-size: 38px;
+
+            line-height: 1.2;
+        }
+
+
+        .section-heading > p:last-child {
+            margin-top: 12px;
+
+            color: #5c6267;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           PRODUCT GRID
+        ========================= */
+
+        .product-grid {
+
+            max-width: 1250px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(260px, 1fr));
+
+            gap: 25px;
+        }
+
+
+        .product-card {
+
+            background: white;
+
+            border-radius: 7px;
+
+            overflow: hidden;
+
+            border: 1px solid #d2d5d7;
+
+            box-shadow: 0 5px 18px rgba(41,45,49,0.08);
+
+            transition: 0.3s;
+
+            position: relative;
+        }
+
+
+        .product-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 4px;
+
+            background: #c62828;
+        }
+
+
+        .product-card:hover {
+
+            transform: translateY(-7px);
+
+            box-shadow: 0 15px 30px rgba(41,45,49,0.15);
+        }
+
+
+        .product-image {
+
+            height: 230px;
+
+            padding: 20px;
+
+            background: #f1f2f3;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .product-image img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            transition: 0.3s;
+        }
+
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+
+        .no-image {
+            color: #7a8085;
+
+            font-size: 14px;
+        }
+
+
+        .product-card-content {
+
+            padding: 22px;
+        }
+
+
+        .product-category {
+
+            display: inline-block;
+
+            margin-bottom: 9px;
+
+            padding: 4px 9px;
+
+            background: #f5dada;
+
+            color: #a91f1f;
+
+            border-radius: 3px;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+        }
+
+
+        .product-card h3 {
+
+            color: #292d31;
+
+            font-size: 20px;
+
+            line-height: 1.3;
+
+            margin-bottom: 10px;
+        }
+
+
+        .product-description {
+
+            color: #6a7075;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            min-height: 45px;
+        }
+
+
+        .product-card-buttons {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 8px;
+
+            margin-top: 20px;
+        }
+
+
+        .view-product-btn,
+        .add-cart-btn {
+
+            padding: 10px 8px;
+
+            text-align: center;
+
+            border-radius: 4px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            transition: 0.25s;
+        }
+
+
+        .view-product-btn {
+
+            background: #292d31;
+
+            color: white;
+        }
+
+        .view-product-btn:hover {
+            background: #3b4146;
+        }
+
+
+        .add-cart-btn {
+
+            background: #c62828;
+
+            color: white;
+        }
+
+        .add-cart-btn:hover {
+            background: #a91f1f;
+        }
+
+
+        /* VIEW ALL */
+
+        .view-all-products {
+
+            text-align: center;
+
+            margin-top: 45px;
+        }
+
+
+        .primary-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 13px 25px;
+
+            background: #c62828;
+
+            color: white;
+
+            border-radius: 5px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition: 0.25s;
+        }
+
+
+        .primary-btn:hover {
+
+            background: #a91f1f;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           SOLUTIONS SECTION
+        ========================= */
+
+        .solutions-section {
+
+            padding: 80px 6%;
+
+            background: #292d31;
+        }
+
+
+        .solutions-heading {
+
+            text-align: center;
+
+            margin-bottom: 45px;
+        }
+
+
+        .solutions-heading h2 {
+
+            margin-top: 8px;
+
+            color: white;
+
+            font-size: 36px;
+        }
+
+
+        .solutions-heading p {
+
+            margin-top: 10px;
+
+            color: #bfc4c7;
+
+            font-size: 15px;
+        }
+
+
+        .solutions-grid {
+
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .solution-card {
+
+            padding: 30px 25px;
+
+            background: #343a3f;
+
+            border: 1px solid #454b50;
+
+            border-top: 3px solid #c62828;
+
+            border-radius: 5px;
+
+            transition: 0.25s;
+        }
+
+
+        .solution-card:hover {
+
+            background: #3b4146;
+
+            transform: translateY(-5px);
+        }
+
+
+        .solution-icon {
+
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 18px;
+
+            background: #c62828;
+
+            color: white;
+
+            border-radius: 5px;
+
+            font-size: 22px;
+        }
+
+
+        .solution-card h3 {
+
+            color: white;
+
+            font-size: 19px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .solution-card p {
+
+            color: #b8bdc1;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           ENQUIRY SECTION
+        ========================= */
+
+        .enquiry {
+
+            padding: 65px 7%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 35px;
+
+            background: #f5f6f7;
+
+            border-top: 1px solid #d2d5d7;
+            border-bottom: 1px solid #d2d5d7;
+        }
+
+
+        .enquiry h2 {
+
+            margin-top: 5px;
+
+            color: #292d31;
+
+            font-size: 32px;
+
+            line-height: 1.25;
+        }
+
+
+        .enquiry p:last-child {
+
+            max-width: 650px;
+
+            margin-top: 10px;
+
+            color: #656b70;
+
+            font-size: 15px;
+        }
+
+
+        .enquiry .primary-btn {
+
+            flex-shrink: 0;
+
+            padding: 15px 25px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            padding: 45px 20px 30px;
+
+            background: #292d31;
+
+            text-align: center;
+
+            border-top: 3px solid #c62828;
+        }
+
+
+        footer h3 {
+
+            color: white;
+
+            font-size: 20px;
+
+            margin-bottom: 7px;
+        }
+
+
+        footer p {
+
+            color: #aeb4b8;
+
+            font-size: 13px;
+
+            margin-top: 5px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1100px) {
+
+            .main-nav {
+                display: none;
+            }
+
+            .whatsapp-btn {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero-stats {
+                display: none;
+            }
+
+            .hero-section {
+                min-height: 650px;
+            }
+        }
+
+
+        @media (max-width: 850px) {
+
+            .header {
+                padding: 10px 20px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .logo img {
+                width: 43px;
+                height: 43px;
+            }
+
+
+            .hero-section {
+
+                padding: 135px 7% 80px;
+
+                min-height: 620px;
+            }
+
+
+            .hero-content h1 {
+                font-size: 46px;
+
+                letter-spacing: -1px;
+            }
+
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+
+            .solutions-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .enquiry {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .header {
+                min-height: 70px;
+            }
+
+
+            .mobile-menu {
+                top: 70px;
+            }
+
+
+            .logo span {
+                font-size: 15px;
+            }
+
+
+            .logo img {
+                width: 40px;
+                height: 40px;
+            }
+
+
+            .hero-section {
+
+                padding: 115px 6% 70px;
+
+                min-height: 580px;
+            }
+
+
+            .hero-label {
+
+                font-size: 9px;
+
+                letter-spacing: 1.3px;
+            }
+
+
+            .hero-content h1 {
+
+                font-size: 39px;
+
+                line-height: 1.1;
+            }
+
+
+            .hero-description {
+
+                font-size: 15px;
+
+                line-height: 1.7;
+            }
+
+
+            .hero-buttons {
+
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+
+            .hero-primary-btn,
+            .hero-whatsapp-btn {
+
+                width: 100%;
+            }
+
+
+            .featured-section {
+
+                padding: 65px 5%;
+            }
+
+
+            .section-heading h2 {
+
+                font-size: 30px;
+            }
+
+
+            .product-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 20px;
+            }
+
+
+            .product-image {
+
+                height: 240px;
+            }
+
+
+            .solutions-section {
+
+                padding: 65px 6%;
+            }
+
+
+            .solutions-heading h2 {
+
+                font-size: 29px;
+            }
+
+
+            .enquiry {
+
+                padding: 55px 7%;
+            }
+
+
+            .enquiry h2 {
+
+                font-size: 27px;
+            }
+
+
+            .enquiry .primary-btn {
+
+                width: 100%;
+            }
+
+
+            footer {
+
+                padding: 38px 20px 25px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-    <!-- HEADER -->
 
-   
+<!-- =========================
+     HEADER
+========================= -->
+
 <header class="header">
 
     <a href="/" class="logo">
-    <img src="{% static 'main/logo.png' %}" alt="3D Tech Trading Company">
-    <span>3D Tech Trading Company</span>
-</a>
+
+        <img
+            src="{% static 'main/logo.png' %}"
+            alt="3D Tech Trading Company"
+        >
+
+        <span>
+            3D Tech Trading Company
+        </span>
+
+    </a>
+
 
     <nav class="main-nav">
 
-        <a href="/">
+        <a href="{% url 'home' %}">
             Home
+        </a>
+
+        <a href="{% url 'categories' %}">
+            Categories
         </a>
 
         <a href="{% url 'products' %}">
             Products
         </a>
 
-        <a href="{% url 'categories' %}">
-    Categories
-</a>
+        <a href="{% url 'about' %}">
+            About Us
+        </a>
 
-       <a href="{% url 'about' %}">
-    About Us
-</a>
-<a href="{% url 'contact' %}">
-    Contact
-</a>
+        <a href="{% url 'contact' %}">
+            Contact
+        </a>
 
         <a href="{% url 'cart' %}">
             🛒 Cart ({{ cart_count }})
         </a>
+
         <a href="{% url 'admin:login' %}">
-    ⚙ Admin Login
-</a>
+            ⚙ Admin Login
+        </a>
 
     </nav>
 
-    <a class="whatsapp-btn"
-       href="https://wa.me/917411837088"
-       target="_blank">
+
+    <a
+        class="whatsapp-btn"
+        href="https://wa.me/917411837088"
+        target="_blank"
+    >
         📲 WhatsApp
     </a>
-    <button class="menu-toggle" onclick="toggleMenu()" type="button">
-    ☰
-</button>
+
+
+    <button
+        class="menu-toggle"
+        onclick="toggleMenu()"
+        type="button"
+    >
+        ☰
+    </button>
 
 </header>
+
+
+<!-- MOBILE MENU -->
+
 <div class="mobile-menu" id="mobileMenu">
 
-    <a href="{% url 'home' %}">Home</a>
-
-    <a href="{% url 'products' %}">Products</a>
+    <a href="{% url 'home' %}">
+        Home
+    </a>
 
     <a href="{% url 'categories' %}">
-    Categories
-</a>
+        Categories
+    </a>
+
+    <a href="{% url 'products' %}">
+        Products
+    </a>
 
     <a href="{% url 'about' %}">
-    About Us
-</a>
+        About Us
+    </a>
 
     <a href="{% url 'contact' %}">
-    Contact
-</a>
+        Contact
+    </a>
 
     <a href="{% url 'cart' %}">
         🛒 Cart ({{ cart_count }})
@@ -90,7 +1316,10 @@
         ⚙ Admin Login
     </a>
 
-    <a href="https://wa.me/917411837088" target="_blank">
+    <a
+        href="https://wa.me/917411837088"
+        target="_blank"
+    >
         📲 WhatsApp
     </a>
 
@@ -98,9 +1327,11 @@
 
 
 
-    <!-- HERO SECTION -->
+<!-- =========================
+     HERO
+========================= -->
 
-    <section class="hero-section">
+<section class="hero-section">
 
     <div class="hero-content">
 
@@ -108,25 +1339,43 @@
             INDUSTRIAL PRODUCTS & ENGINEERING SOLUTIONS
         </p>
 
+
         <h1>
+
             Reliable Industrial Products
-            <span>For Your Business</span>
+
+            <span>
+                For Your Business
+            </span>
+
         </h1>
 
+
         <p class="hero-description">
-            Explore industrial equipment, machinery, components
-            and engineering products from 3D Tech Trading Company.
+
+            Explore industrial equipment, machinery,
+            components and engineering products from
+            3D Tech Trading Company — your reliable
+            sourcing partner for industrial requirements.
+
         </p>
+
 
         <div class="hero-buttons">
 
-            <a href="{% url 'products' %}" class="hero-primary-btn">
+            <a
+                href="{% url 'products' %}"
+                class="hero-primary-btn"
+            >
                 Explore Products →
             </a>
 
-            <a href="https://wa.me/917411837088"
-               target="_blank"
-               class="hero-whatsapp-btn">
+
+            <a
+                href="https://wa.me/917411837088"
+                target="_blank"
+                class="hero-whatsapp-btn"
+            >
                 📲 Send Enquiry
             </a>
 
@@ -134,10 +1383,60 @@
 
     </div>
 
+
+    <!-- HERO STATS -->
+
+    <div class="hero-stats">
+
+        <div class="hero-stat">
+
+            <strong>
+                01
+            </strong>
+
+            <span>
+                Industrial Solutions
+            </span>
+
+        </div>
+
+
+        <div class="hero-stat">
+
+            <strong>
+                02
+            </strong>
+
+            <span>
+                Quality Products
+            </span>
+
+        </div>
+
+
+        <div class="hero-stat">
+
+            <strong>
+                03
+            </strong>
+
+            <span>
+                Reliable Support
+            </span>
+
+        </div>
+
+    </div>
+
 </section>
 
-    
-    <section class="featured-section">
+
+
+<!-- =========================
+     FEATURED PRODUCTS
+========================= -->
+
+<section class="featured-section">
 
     <div class="section-heading">
 
@@ -146,11 +1445,12 @@
         </p>
 
         <h2>
-            Featured Products
+            Featured Industrial Products
         </h2>
 
         <p>
-            Explore our range of industrial products and engineering solutions.
+            Explore our range of industrial equipment,
+            components and engineering solutions.
         </p>
 
     </div>
@@ -160,74 +1460,82 @@
 
         {% for product in featured_products %}
 
-            <div class="product-card">
-
-                <div class="product-image">
-
-                    {% if product.image %}
-
-                        <img
-                            src="{{ product.image.url }}"
-                            alt="{{ product.name }}"
-                        >
-
-                    {% else %}
-
-                        <div class="no-image">
-                            No Image Available
-                        </div>
-
-                    {% endif %}
-
-                </div>
+        <div class="product-card">
 
 
-                <div class="product-card-content">
+            <div class="product-image">
 
-                    <p class="product-category">
-                        {{ product.category.name }}
+                {% if product.image %}
+
+                    <img
+                        src="{{ product.image.url }}"
+                        alt="{{ product.name }}"
+                    >
+
+                {% else %}
+
+                    <div class="no-image">
+                        No Image Available
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="product-card-content">
+
+
+                <p class="product-category">
+                    {{ product.category.name }}
+                </p>
+
+
+                <h3>
+                    {{ product.name }}
+                </h3>
+
+
+                {% if product.description %}
+
+                    <p class="product-description">
+
+                        {{ product.description|truncatewords:12 }}
+
                     </p>
 
-                    <h3>
-                        {{ product.name }}
-                    </h3>
-
-                    {% if product.description %}
-
-                        <p class="product-description">
-                            {{ product.description|truncatewords:12 }}
-                        </p>
-
-                    {% endif %}
+                {% endif %}
 
 
-                    <div class="product-card-buttons">
+                <div class="product-card-buttons">
 
-                        <a
-                            href="{% url 'product_detail' product.id %}"
-                            class="view-product-btn"
-                        >
-                            View Details
-                        </a>
+                    <a
+                        href="{% url 'product_detail' product.id %}"
+                        class="view-product-btn"
+                    >
+                        View Details
+                    </a>
 
-                        <a
-                            href="{% url 'add_to_cart' product.id %}"
-                            class="add-cart-btn"
-                        >
-                            🛒 Add to Cart
-                        </a>
 
-                    </div>
+                    <a
+                        href="{% url 'add_to_cart' product.id %}"
+                        class="add-cart-btn"
+                    >
+                        🛒 Add to Cart
+                    </a>
 
                 </div>
 
             </div>
 
+        </div>
+
+
         {% empty %}
 
-            <p>
-                Products will be added soon.
-            </p>
+        <p>
+            Products will be added soon.
+        </p>
 
         {% endfor %}
 
@@ -236,7 +1544,10 @@
 
     <div class="view-all-products">
 
-        <a href="{% url 'products' %}" class="primary-btn">
+        <a
+            href="{% url 'products' %}"
+            class="primary-btn"
+        >
             View All Products →
         </a>
 
@@ -245,64 +1556,181 @@
 </section>
 
 
-    <!-- ENQUIRY SECTION -->
 
-    <section class="enquiry">
+<!-- =========================
+     SOLUTIONS
+========================= -->
 
-        <div>
+<section class="solutions-section">
 
-            <p class="small-title">
-                NEED A PRODUCT?
-            </p>
+    <div class="solutions-heading">
 
-            <h2>
-                Looking for a specific
-                industrial product?
-            </h2>
+        <p class="section-label">
+            WHY 3D TECH
+        </p>
+
+        <h2>
+            Your Industrial Sourcing Partner
+        </h2>
+
+        <p>
+            Practical solutions for your industrial
+            product and engineering requirements.
+        </p>
+
+    </div>
+
+
+    <div class="solutions-grid">
+
+
+        <div class="solution-card">
+
+            <div class="solution-icon">
+                ⚙
+            </div>
+
+            <h3>
+                Industrial Products
+            </h3>
 
             <p>
-                Send us your requirement and our team
-                will get back to you with suitable
-                products and pricing.
+                A wide range of industrial equipment,
+                machinery, components and engineering
+                products for different applications.
             </p>
 
         </div>
 
-        <a href="https://wa.me/917411837088"
-           target="_blank"
-           class="primary-btn">
-            Enquire on WhatsApp
-        </a>
 
-    </section>
+        <div class="solution-card">
+
+            <div class="solution-icon">
+                ✓
+            </div>
+
+            <h3>
+                Quality Focus
+            </h3>
+
+            <p>
+                We focus on sourcing suitable products
+                according to your technical and application
+                requirements.
+            </p>
+
+        </div>
+
+
+        <div class="solution-card">
+
+            <div class="solution-icon">
+                ☎
+            </div>
+
+            <h3>
+                Enquiry Support
+            </h3>
+
+            <p>
+                Share your requirement with us and our
+                team will help identify a suitable product
+                and provide pricing.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
 
 
 
-    <!-- FOOTER -->
+<!-- =========================
+     ENQUIRY SECTION
+========================= -->
 
-    <footer>
+<section class="enquiry">
 
-        <h3>
-            3D Tech Trading Company
-        </h3>
+    <div>
 
-        <p>
-            Industrial Products & Engineering Solutions
+        <p class="small-title">
+            NEED A PRODUCT?
         </p>
 
+
+        <h2>
+            Looking for a specific
+            industrial product?
+        </h2>
+
+
         <p>
-            © 2026 3D Tech Trading Company. All Rights Reserved.
+            Send us your requirement and our team
+            will get back to you with suitable
+            products and pricing.
         </p>
 
-    </footer>
-    <script>
+    </div>
+
+
+    <a
+        href="https://wa.me/917411837088"
+        target="_blank"
+        class="primary-btn"
+    >
+        📲 Enquire on WhatsApp
+    </a>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <h3>
+        3D Tech Trading Company
+    </h3>
+
+
+    <p>
+        Industrial Products & Engineering Solutions
+    </p>
+
+
+    <p>
+        © 2026 3D Tech Trading Company.
+        All Rights Reserved.
+    </p>
+
+</footer>
+
+
+
+<!-- =========================
+     MOBILE MENU SCRIPT
+========================= -->
+
+<script>
+
 function toggleMenu() {
-    const menu = document.getElementById("mobileMenu");
+
+    const menu =
+        document.getElementById("mobileMenu");
 
     menu.classList.toggle("active");
+
 }
+
 </script>
+
 
 </body>
 
 </html>
+

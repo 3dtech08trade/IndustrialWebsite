@@ -1,3 +1,4 @@
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -12,228 +13,1241 @@
 
     <title>About Us | 3D Tech Trading Company</title>
 
-    <link rel="stylesheet"
-          href="{% static 'main/style.css' %}">
+
+    <!-- =================================================
+         INTERNAL CSS
+    ================================================== -->
+
+    <style>
+
+        /* =================================================
+           BASIC
+        ================================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            background: #e7e9eb;
+
+            color: #25282b;
+        }
+
+
+        /* =================================================
+           FIXED HEADER
+        ================================================= */
+
+        .header {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            min-height: 78px;
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 10px 35px;
+
+            background: #292d31;
+
+            border-bottom: 3px solid #c62828;
+
+            z-index: 9999;
+
+            box-shadow:
+                0 3px 15px rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* =================================================
+           LOGO
+        ================================================= */
+
+        .logo {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            text-decoration: none;
+
+            color: #ffffff;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+
+        .logo img {
+            width: 48px;
+            height: 48px;
+
+            object-fit: contain;
+
+            border-radius: 6px;
+        }
+
+
+        /* =================================================
+           DESKTOP NAVIGATION
+        ================================================= */
+
+         .main-nav {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            margin-left: auto;
+        }
+
+
+        .main-nav a {
+            color: #e1e5e8 !important;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            position: relative;
+
+            padding: 7px 0;
+
+            transition: 0.25s;
+        }
+
+
+        .main-nav a:hover {
+            color: #ffffff !important;
+        }
+
+
+        .main-nav a::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            bottom: 0;
+
+            width: 0;
+
+            height: 2px;
+
+            background: #d71920;
+
+            transition: 0.25s;
+        }
+
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+
+
+        /* =================================================
+           WHATSAPP BUTTON
+        ================================================= */
+
+        .whatsapp-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 10px 15px;
+
+            background: #09a545 !important;
+
+            color: #ffffff !important;
+
+            text-decoration: none;
+
+            border-radius: 5px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+
+        .whatsapp-btn:hover {
+            background: #b9141a !important;
+
+            transform: translateY(-2px);
+        }
+
+
+        .whatsapp-btn::after {
+            display: none !important;
+        }
+
+
+        /* =================================================
+           MOBILE BUTTON
+        ================================================= */
+
+        .menu-toggle {
+            display: none;
+
+            margin-left: auto;
+
+            background: transparent;
+
+            border: none;
+
+            color: white;
+
+            font-size: 28px;
+
+            cursor: pointer;
+        }
+
+
+        /* =================================================
+           MOBILE MENU
+        ================================================= */
+
+        .mobile-menu {
+            display: none;
+
+            position: fixed;
+
+            top: 78px;
+
+            left: 0;
+
+            width: 100%;
+
+            background: #292d31;
+
+            border-top: 1px solid #555b60;
+
+            z-index: 9998;
+
+            padding: 10px 20px 20px;
+
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+
+        .mobile-menu.active {
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        .mobile-menu a {
+            color: #ffffff;
+
+            text-decoration: none;
+
+            padding: 14px 10px;
+
+            border-bottom: 1px solid
+                rgba(255,255,255,0.10);
+
+            font-size: 15px;
+
+            transition: 0.3s;
+        }
+
+
+        .mobile-menu a:hover {
+            color: #ff3b3b;
+        }
+
+
+        /* =================================================
+           ABOUT PAGE
+        ================================================== */
+
+        .about-page {
+            padding-top: 78px;
+
+            background: #e7e9eb;
+
+            min-height: 100vh;
+        }
+
+
+        /* =================================================
+           ABOUT HERO
+        ================================================== */
+
+        .about-hero {
+            position: relative;
+
+            padding: 100px 20px 115px;
+
+            text-align: center;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #292d31,
+                    #3b4146
+                );
+        }
+
+
+        /* Steel decorative circle */
+
+        .about-hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            border: 1px solid
+                rgba(192, 198, 203, 0.15);
+
+            border-radius: 50%;
+
+            top: -250px;
+
+            left: -150px;
+        }
+
+
+        /* Red decorative circle */
+
+        .about-hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 420px;
+            height: 420px;
+
+            border: 2px solid
+                rgba(198, 40, 40, 0.18);
+
+            border-radius: 50%;
+
+            right: -160px;
+
+            bottom: -260px;
+        }
+
+
+        /* =================================================
+           ABOUT LABEL
+        ================================================== */
+
+        .about-label {
+            position: relative;
+
+            z-index: 2;
+
+            color: #e53935;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =================================================
+           HERO HEADING
+        ================================================== */
+
+        .about-hero h1 {
+            position: relative;
+
+            z-index: 2;
+
+            margin: 0 auto 25px;
+
+            max-width: 900px;
+
+            color: #ffffff;
+
+            font-size: 48px;
+
+            line-height: 1.2;
+
+            font-weight: 800;
+        }
+
+
+        /* Red emphasis */
+
+        .about-hero h1::first-line {
+            color: #ffffff;
+        }
+
+
+        /* =================================================
+           HERO DESCRIPTION
+        ================================================== */
+
+        .about-intro {
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 750px;
+
+            margin: auto;
+
+            color: #d2d6d9;
+
+            font-size: 17px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =================================================
+           ABOUT CONTENT
+        ================================================== */
+
+        .about-content {
+            position: relative;
+
+            z-index: 5;
+
+            max-width: 1100px;
+
+            margin: -50px auto 0;
+
+            padding: 0 20px 80px;
+        }
+
+
+        /* =================================================
+           MAIN ABOUT CARD
+        ================================================== */
+
+        .about-card {
+            background: #ffffff;
+
+            padding: 55px;
+
+            border-radius: 10px;
+
+            border: 1px solid #c8cdd1;
+
+            border-top: 4px solid #c62828;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,0.12);
+
+            text-align: center;
+        }
+
+
+        /* =================================================
+           ICON
+        ================================================== */
+
+        .about-icon {
+            width: 70px;
+            height: 70px;
+
+            margin: 0 auto 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #3b4146;
+
+            border: 3px solid #c62828;
+
+            color: #ffffff;
+
+            font-size: 30px;
+        }
+
+
+        /* =================================================
+           CARD HEADING
+        ================================================== */
+
+        .about-card h2 {
+            margin: 0 0 22px;
+
+            font-size: 31px;
+
+            color: #292d31;
+        }
+
+
+        /* Red line under heading */
+
+        .about-card h2::after {
+            content: "";
+
+            display: block;
+
+            width: 55px;
+
+            height: 3px;
+
+            background: #c62828;
+
+            margin: 12px auto 0;
+        }
+
+
+        /* =================================================
+           CARD PARAGRAPHS
+        ================================================== */
+
+        .about-card p {
+            max-width: 800px;
+
+            margin: 0 auto 18px;
+
+            color: #5c6267;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =================================================
+           FEATURES
+        ================================================== */
+
+        .about-features {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-top: 25px;
+        }
+
+
+        /* =================================================
+           FEATURE CARD
+        ================================================== */
+
+        .about-feature {
+            display: flex;
+
+            gap: 18px;
+
+            background: #ffffff;
+
+            padding: 30px;
+
+            border-radius: 8px;
+
+            border: 1px solid #c8cdd1;
+
+            border-top: 3px solid #555b60;
+
+            transition: 0.3s;
+        }
+
+
+        .about-feature:hover {
+            transform: translateY(-5px);
+
+            border-top-color: #c62828;
+
+            box-shadow:
+                0 12px 30px
+                rgba(0,0,0,0.12);
+        }
+
+
+        /* =================================================
+           FEATURE NUMBER
+        ================================================== */
+
+        .feature-number {
+            flex-shrink: 0;
+
+            color: #c62828;
+
+            font-size: 25px;
+
+            font-weight: 800;
+        }
+
+
+        /* =================================================
+           FEATURE HEADING
+        ================================================== */
+
+        .about-feature h3 {
+            margin: 0 0 8px;
+
+            color: #292d31;
+
+            font-size: 18px;
+        }
+
+
+        /* =================================================
+           FEATURE TEXT
+        ================================================== */
+
+        .about-feature p {
+            margin: 0;
+
+            color: #687077;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =================================================
+           FOOTER
+        ================================================== */
+
+        footer {
+            padding: 40px 20px;
+
+            text-align: center;
+
+            background: #292d31;
+
+            border-top: 3px solid #c62828;
+
+            color: #d2d6d9;
+        }
+
+
+        footer h3 {
+            margin: 0 0 10px;
+
+            color: #ffffff;
+
+            font-size: 20px;
+        }
+
+
+        footer p {
+            margin: 7px 0;
+
+            font-size: 14px;
+
+            color: #aeb5ba;
+        }
+
+
+        /* =================================================
+           TABLET
+        ================================================== */
+
+        @media (max-width: 1100px) {
+
+            .header {
+                padding: 10px 20px;
+            }
+
+
+            .main-nav a {
+                padding: 9px 7px;
+
+                font-size: 13px;
+            }
+
+
+            .whatsapp-btn {
+                padding: 10px 12px;
+
+                margin-left: 8px;
+            }
+
+        }
+
+
+        /* =================================================
+           MOBILE
+        ================================================== */
+
+        @media (max-width: 768px) {
+
+            .header {
+                min-height: 70px;
+
+                padding: 8px 15px;
+            }
+
+
+            .logo span {
+                font-size: 15px;
+            }
+
+
+            .logo img {
+                width: 42px;
+
+                height: 42px;
+            }
+
+
+            .main-nav,
+            .whatsapp-btn {
+                display: none;
+            }
+
+
+            .menu-toggle {
+                display: block;
+            }
+
+
+            .mobile-menu {
+                top: 70px;
+            }
+
+
+            .about-page {
+                padding-top: 70px;
+            }
+
+
+            .about-hero {
+                padding: 65px 20px 85px;
+            }
+
+
+            .about-label {
+                font-size: 11px;
+
+                letter-spacing: 2px;
+            }
+
+
+            .about-hero h1 {
+                font-size: 34px;
+
+                line-height: 1.25;
+            }
+
+
+            .about-intro {
+                font-size: 15px;
+
+                line-height: 1.7;
+            }
+
+
+            .about-content {
+                margin-top: -35px;
+
+                padding-left: 15px;
+
+                padding-right: 15px;
+
+                padding-bottom: 50px;
+            }
+
+
+            .about-card {
+                padding: 35px 22px;
+            }
+
+
+            .about-card h2 {
+                font-size: 26px;
+            }
+
+
+            .about-card p {
+                font-size: 15px;
+
+                text-align: left;
+            }
+
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+
+            .about-feature {
+                padding: 25px;
+            }
+
+        }
+
+
+        /* =================================================
+           SMALL MOBILE
+        ================================================== */
+
+        @media (max-width: 450px) {
+
+            .logo span {
+                font-size: 13px;
+            }
+
+
+            .about-hero h1 {
+                font-size: 29px;
+            }
+
+
+            .about-label {
+                font-size: 10px;
+
+                letter-spacing: 1.5px;
+            }
+
+
+            .about-icon {
+                width: 60px;
+
+                height: 60px;
+
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
-<header class="header">
-    
 
-    <a href="/" class="logo">
-    <img src="{% static 'main/logo.png' %}" alt="3D Tech Trading Company">
-    <span>3D Tech Trading Company</span>
-</a>
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+
+    <!-- LOGO -->
+
+    <a href="{% url 'home' %}"
+       class="logo">
+
+        <img src="{% static 'main/logo.png' %}"
+             alt="3D Tech Trading Company">
+
+        <span>
+            3D Tech Trading Company
+        </span>
+
+    </a>
+
+
+    <!-- DESKTOP NAVIGATION -->
 
     <nav class="main-nav">
 
-        <a href="/">
+        <a href="{% url 'home' %}">
             Home
+        </a>
+
+        <a href="{% url 'categories' %}">
+            Categories
         </a>
 
         <a href="{% url 'products' %}">
             Products
         </a>
-        
-        <a href="{% url 'categories' %}">
-    Categories
-</a>
 
-         <a href="{% url 'about' %}">
+        <a href="{% url 'about' %}">
             About Us
         </a>
 
         <a href="{% url 'contact' %}">
-    Contact
-</a>
+            Contact
+        </a>
 
         <a href="{% url 'cart' %}">
             🛒 Cart ({{ cart_count }})
         </a>
+
         <a href="{% url 'admin:login' %}">
-    ⚙ Admin Login
-</a>
+            ⚙ Admin Login
+        </a>
 
     </nav>
+
+
+    <!-- WHATSAPP -->
 
     <a class="whatsapp-btn"
        href="https://wa.me/917411837088"
        target="_blank">
+
         📲 WhatsApp
+
     </a>
-    <button class="menu-toggle" onclick="toggleMenu()" type="button">
-    ☰
-</button>
+
+
+    <!-- MOBILE MENU BUTTON -->
+
+    <button class="menu-toggle"
+            onclick="toggleMenu()"
+            type="button">
+
+        ☰
+
+    </button>
+
 
 </header>
 
 
-<!-- MOBILE MENU -->
 
-<div class="mobile-menu" id="mobileMenu">
+<!-- =====================================================
+     MOBILE MENU
+===================================================== -->
 
-    <a href="{% url 'home' %}">Home</a>
+<div class="mobile-menu"
+     id="mobileMenu">
 
-    <a href="{% url 'products' %}">Products</a>
+
+    <a href="{% url 'home' %}">
+        Home
+    </a>
+
 
     <a href="{% url 'categories' %}">
-    Categories
-</a>
+        Categories
+    </a>
 
-    
-<a href="{% url 'about' %}">About Us</a>
-    
+
+    <a href="{% url 'products' %}">
+        Products
+    </a>
+
+
+    <a href="{% url 'about' %}">
+        About Us
+    </a>
+
 
     <a href="{% url 'contact' %}">
-    Contact
-</a>
+        Contact
+    </a>
+
 
     <a href="{% url 'cart' %}">
         🛒 Cart ({{ cart_count }})
     </a>
 
+
     <a href="{% url 'admin:login' %}">
         ⚙ Admin Login
     </a>
 
-    <a href="https://wa.me/917411837088" target="_blank">
+
+    <a href="https://wa.me/917411837088"
+       target="_blank">
+
         📲 WhatsApp
+
     </a>
 
 </div>
 
 
 
-<!-- =========================
+<!-- =====================================================
      ABOUT PAGE
-========================= -->
+===================================================== -->
 
-<main style="
-    width: 100%;
-    min-height: 600px;
-    padding: 80px 20px;
-    background: #f5f7fa;
-    box-sizing: border-box;
-">
+<main class="about-page">
 
-    <div style="
-        width: 100%;
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 60px;
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        box-sizing: border-box;
-        text-align: center;
-">
 
-        <div style="
-            color: #0b5ed7;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-        ">
-            ABOUT US
+    <!-- =================================================
+         HERO SECTION
+    ================================================== -->
+
+    <section class="about-hero">
+
+
+        <div class="about-label">
+
+            ABOUT 3D TECH TRADING COMPANY
+
         </div>
 
 
-        <h1 style="
-            margin: 0 0 30px;
-            font-size: 42px;
-            line-height: 1.2;
-            color: #17202a;
-        ">
-            3D Tech Trading Company
+        <h1>
+
+            Industrial Products.<br>
+
+            Reliable Engineering Solutions.
+
         </h1>
 
 
-        <p style="
-            max-width: 750px;
-            margin: 0 auto 20px;
-            color: #555;
-            font-size: 17px;
-            line-height: 1.8;
-        ">
+        <p class="about-intro">
+
             3D Tech Trading Company provides industrial products,
             equipment, components and engineering solutions for
             businesses and industries.
+
         </p>
 
 
-        <p style="
-            max-width: 750px;
-            margin: 0 auto 20px;
-            color: #555;
-            font-size: 17px;
-            line-height: 1.8;
-        ">
-            Our product range covers industrial machinery,
-            gearboxes, conveyors, valves, fittings and other
-            engineering products.
-        </p>
+    </section>
 
 
-        <p style="
-            max-width: 750px;
-            margin: 0 auto 20px;
-            color: #555;
-            font-size: 17px;
-            line-height: 1.8;
-        ">
-            We aim to provide reliable industrial products
-            and practical solutions based on our customers'
-            requirements.
-        </p>
 
-    </div>
+    <!-- =================================================
+         CONTENT
+    ================================================== -->
+
+    <section class="about-content">
+
+
+        <!-- WHO WE ARE -->
+
+        <div class="about-card">
+
+
+            <div class="about-icon">
+
+                ⚙
+
+            </div>
+
+
+            <h2>
+
+                Who We Are
+
+            </h2>
+
+
+            <p>
+
+                3D Tech Trading Company provides a wide range of
+                industrial products and engineering solutions to
+                meet the requirements of businesses and industries.
+
+            </p>
+
+
+            <p>
+
+                Our product range covers industrial machinery,
+                gearboxes, conveyors, valves, fittings and other
+                engineering products.
+
+            </p>
+
+
+            <p>
+
+                We focus on providing reliable industrial products
+                and practical solutions based on our customers'
+                requirements.
+
+            </p>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             FEATURES
+        ================================================== -->
+
+        <div class="about-features">
+
+
+            <!-- FEATURE 01 -->
+
+            <div class="about-feature">
+
+                <div class="feature-number">
+
+                    01
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+
+                        Industrial Products
+
+                    </h3>
+
+
+                    <p>
+
+                        A broad range of industrial equipment,
+                        components and machinery.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FEATURE 02 -->
+
+            <div class="about-feature">
+
+                <div class="feature-number">
+
+                    02
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+
+                        Engineering Solutions
+
+                    </h3>
+
+
+                    <p>
+
+                        Practical solutions designed around
+                        customer requirements.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FEATURE 03 -->
+
+            <div class="about-feature">
+
+                <div class="feature-number">
+
+                    03
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+
+                        Reliable Supply
+
+                    </h3>
+
+
+                    <p>
+
+                        Helping businesses source the right
+                        industrial products.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
 
 </main>
-<style>
 
-@media (max-width: 600px) {
 
-    main {
-        padding: 40px 15px !important;
-    }
 
-    main > div {
-        padding: 30px 20px !important;
-    }
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
-    main h1 {
-        font-size: 28px !important;
-    }
-
-    main p {
-        font-size: 15px !important;
-        line-height: 1.7 !important;
-        text-align: left !important;
-    }
-
-}
-
-</style>
 <footer>
 
+
     <h3>
+
         3D Tech Trading Company
+
     </h3>
 
-    <p>
-        Industrial Products & Engineering Solutions
-    </p>
 
     <p>
+
+        Industrial Products & Engineering Solutions
+
+    </p>
+
+
+    <p>
+
         © 2026 3D Tech Trading Company.
         All Rights Reserved.
+
     </p>
+
 
 </footer>
 
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
 
 <script>
 
@@ -248,6 +1262,9 @@ function toggleMenu() {
 
 </script>
 
+
 </body>
 
 </html>
+
+

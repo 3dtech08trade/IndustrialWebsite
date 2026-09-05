@@ -1,125 +1,1301 @@
-
 {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Products | 3D Tech Trading Company</title>
 
     <link rel="stylesheet" href="{% static 'main/style.css' %}">
+
+
+    <style>
+
+        /* =========================================
+           PRODUCTS PAGE THEME
+           STEEL GREY + CHARCOAL + RED
+        ========================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            background: #e4e8eb !important;
+            color: #263238;
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        .header {
+            width: 100%;
+
+            background: #263238 !important;
+
+            border-bottom: 3px solid #d71920;
+
+            position: fixed;
+
+            top: 0;
+
+            z-index: 1000;
+
+            padding: 10px 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 25px;
+        }
+
+
+        .logo {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            text-decoration: none;
+
+            color: #ffffff !important;
+
+            white-space: nowrap;
+        }
+
+
+        .logo img {
+            width: 45px;
+
+            height: 45px;
+
+            object-fit: contain;
+
+            border-radius: 5px;
+        }
+
+
+        .logo span {
+            color: #ffffff;
+
+            font-size: 19px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           NAVIGATION
+        ========================================= */
+
+        .main-nav {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            margin-left: auto;
+        }
+
+
+        .main-nav a {
+            color: #e1e5e8 !important;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            position: relative;
+
+            padding: 7px 0;
+
+            transition: 0.25s;
+        }
+
+
+        .main-nav a:hover {
+            color: #ffffff !important;
+        }
+
+
+        .main-nav a::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            bottom: 0;
+
+            width: 0;
+
+            height: 2px;
+
+            background: #d71920;
+
+            transition: 0.25s;
+        }
+
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+
+        /* =========================================
+           WHATSAPP
+        ========================================= */
+
+        .whatsapp-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 10px 15px;
+
+            background: #09a545 !important;
+
+            color: #ffffff !important;
+
+            text-decoration: none;
+
+            border-radius: 5px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+
+        .whatsapp-btn:hover {
+            background: #b9141a !important;
+
+            transform: translateY(-2px);
+        }
+
+
+        .whatsapp-btn::after {
+            display: none !important;
+        }
+
+
+        /* =========================================
+           MOBILE MENU BUTTON
+        ========================================= */
+
+        .menu-toggle {
+            display: none;
+
+            width: 42px;
+
+            height: 42px;
+
+            border: none;
+
+            border-radius: 5px;
+
+            background: #d71920;
+
+            color: #ffffff;
+
+            font-size: 22px;
+
+            cursor: pointer;
+
+            margin-left: auto;
+        }
+
+
+        /* =========================================
+           MOBILE MENU
+        ========================================= */
+
+        .mobile-menu {
+            display: none;
+
+            background: #263238;
+
+            border-top: 1px solid #45545c;
+
+            padding: 10px 20px 15px;
+        }
+
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+
+        .mobile-menu a {
+            display: block;
+
+            padding: 12px 0;
+
+            color: #e1e5e8 !important;
+
+            text-decoration: none;
+
+            border-bottom: 1px solid #3b474d;
+
+            font-size: 14px;
+        }
+
+
+        .mobile-menu a:hover {
+            color: #d71920 !important;
+        }
+
+
+        /* =========================================
+           PRODUCTS MAIN PAGE
+        ========================================= */
+
+        .products-page {
+            width: 100%;
+
+            min-height: calc(100vh - 75px);
+
+            padding: 55px 20px 75px;
+
+            background:
+
+                radial-gradient(
+                    circle at top right,
+                    rgba(215, 25, 32, 0.07),
+                    transparent 30%
+                ),
+
+                #e4e8eb;
+        }
+
+
+        /* =========================================
+           PAGE TITLE
+        ========================================= */
+
+        .section-title {
+            max-width: 850px;
+
+            margin: 0 auto 35px;
+
+            text-align: center;
+        }
+
+
+        .section-title p {
+            display: inline-block;
+
+            color: #d71920;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 10px;
+
+            position: relative;
+        }
+
+
+        .section-title p::before,
+        .section-title p::after {
+            content: "";
+
+            display: inline-block;
+
+            width: 28px;
+
+            height: 2px;
+
+            background: #d71920;
+
+            vertical-align: middle;
+
+            margin: 0 9px;
+        }
+
+
+        .section-title h1 {
+            color: #263238;
+
+            font-size: 43px;
+
+            line-height: 1.1;
+
+            font-weight: 800;
+
+            letter-spacing: -1px;
+
+            text-transform: uppercase;
+
+            margin: 0 0 14px;
+        }
+
+
+        .section-title h1::first-letter {
+            color: #263238;
+        }
+
+
+        .section-title span {
+            display: block;
+
+            max-width: 650px;
+
+            margin: auto;
+
+            color: #5f6b73;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           SEARCH
+        ========================================= */
+
+        .product-search {
+            width: 100%;
+
+            max-width: 850px;
+
+            margin: 0 auto 16px;
+        }
+
+
+        .product-search form {
+            display: flex;
+
+            gap: 8px;
+
+            width: 100%;
+        }
+
+
+        .product-search input {
+            flex: 1;
+
+            min-width: 0;
+
+            height: 46px;
+
+            padding: 0 16px;
+
+            background: #f4f5f6;
+
+            color: #263238;
+
+            border: 1px solid #c3cbd1;
+
+            border-radius: 5px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            box-shadow:
+                0 3px 8px rgba(38, 50, 56, 0.06);
+
+            transition: 0.25s;
+        }
+
+
+        .product-search input:focus {
+            border-color: #d71920;
+
+            box-shadow:
+                0 0 0 3px rgba(215, 25, 32, 0.10);
+        }
+
+
+        .product-search input::placeholder {
+            color: #7a858c;
+        }
+
+
+        .product-search button {
+            height: 46px;
+
+            padding: 0 20px;
+
+            border: none;
+
+            border-radius: 5px;
+
+            background: #d71920;
+
+            color: #ffffff;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .product-search button:hover {
+            background: #263238;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================================
+           CATEGORY DROPDOWN
+        ========================================= */
+
+        .category-dropdown-custom {
+            width: 100%;
+
+            max-width: 850px;
+
+            margin: 0 auto 35px;
+
+            position: relative;
+        }
+
+
+        .category-dropdown-button {
+            width: 100%;
+
+            height: 44px;
+
+            padding: 0 15px;
+
+            background: #f4f5f6;
+
+            color: #263238;
+
+            border: 1px solid #c3cbd1;
+
+            border-radius: 5px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 3px 8px rgba(38, 50, 56, 0.06);
+        }
+
+
+        .category-dropdown-button:hover {
+            border-color: #d71920;
+        }
+
+
+        .category-dropdown-menu {
+            display: none;
+
+            position: absolute;
+
+            left: 0;
+
+            right: 0;
+
+            top: 49px;
+
+            background: #f4f5f6;
+
+            border: 1px solid #c3cbd1;
+
+            border-radius: 5px;
+
+            box-shadow:
+                0 12px 25px rgba(38, 50, 56, 0.18);
+
+            z-index: 500;
+
+            overflow: hidden;
+        }
+
+
+        .category-dropdown-menu.active {
+            display: block;
+        }
+
+
+        .category-dropdown-menu a {
+            display: block;
+
+            padding: 12px 15px;
+
+            color: #263238 !important;
+
+            text-decoration: none;
+
+            border-bottom: 1px solid #d8dde1;
+
+            font-size: 13px;
+
+            transition: 0.2s;
+        }
+
+
+        .category-dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+
+        .category-dropdown-menu a:hover {
+            background: #e4e8eb;
+
+            color: #d71920 !important;
+
+            padding-left: 20px;
+        }
+
+
+        /* =========================================
+           PRODUCT GRID
+           
+           5 PRODUCTS PER ROW
+        ========================================= */
+
+        .product-grid {
+            width: 100%;
+
+            max-width: 1250px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 16px;
+        }
+
+
+        /* =========================================
+           PRODUCT CARD
+        ========================================= */
+
+        .product-card {
+            min-width: 0;
+
+            background: #f4f5f6;
+
+            border: 1px solid #c3cbd1;
+
+            border-radius: 8px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            flex-direction: column;
+
+            box-shadow:
+                0 4px 10px rgba(38, 50, 56, 0.09);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+
+        .product-card:hover {
+            transform: translateY(-6px);
+
+            border-color: #f13535;
+
+            box-shadow:
+                0 12px 25px rgba(38, 50, 56, 0.17);
+        }
+
+
+        /* =========================================
+           PRODUCT IMAGE
+        ========================================= */
+
+        .product-image {
+            width: 100%;
+
+            height: 100%;
+
+            background: #d5dbe0;
+
+            border-top: 4px solid #070606;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            padding: 10px;
+        }
+
+
+        .product-image img {
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+
+            object-position: center;
+
+            display: block;
+
+            transition: transform 0.4s ease;
+        }
+
+
+        .product-card:hover
+        .product-image img {
+            transform: scale(1.06);
+        }
+
+
+        /* =========================================
+           NO IMAGE
+        ========================================= */
+
+        .no-image {
+            width: 100%;
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #7b858b;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            text-align: center;
+        }
+
+
+        /* =========================================
+           PRODUCT CONTENT
+        ========================================= */
+
+        .product-card-content {
+            padding: 15px 16px 16px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            flex: 1;
+        }
+
+
+        /* =========================================
+           PRODUCT CATEGORY
+        ========================================= */
+
+        .product-category {
+            color: #d71920 !important;
+
+            font-size: 9px !important;
+
+            font-weight: 800 !important;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 6px !important;
+        }
+
+
+        /* =========================================
+           PRODUCT NAME
+        ========================================= */
+
+        .product-card-content h3 {
+            color: #263238 !important;
+
+            font-size: 17px !important;
+
+            line-height: 1.3;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
+
+            transition: 0.25s;
+        }
+
+
+        .product-card:hover
+        .product-card-content h3 {
+            color: #d71920 !important;
+        }
+
+
+        /* =========================================
+           PRODUCT DESCRIPTION
+        ========================================= */
+
+        .product-description {
+            color: #5f6b73 !important;
+
+            font-size: 12px !important;
+
+            line-height: 1.5;
+
+            margin-bottom: 13px !important;
+        }
+
+
+        /* =========================================
+           PRODUCT BUTTONS
+        ========================================= */
+
+        .product-card-buttons {
+            display: flex;
+
+            gap: 7px;
+
+            margin-top: auto;
+        }
+
+
+        .product-card-buttons a {
+            flex: 1;
+
+            min-width: 0;
+
+            height: 34px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            border-radius: 4px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            transition: 0.25s;
+        }
+
+
+        /* =========================================
+           VIEW DETAILS
+        ========================================= */
+
+        .view-product-btn {
+            background: #263238 !important;
+
+            color: #ffffff !important;
+
+            border: 1px solid #263238;
+        }
+
+
+        .view-product-btn:hover {
+            background: #d71920 !important;
+
+            border-color: #d71920;
+        }
+
+
+        /* =========================================
+           ADD TO CART
+        ========================================= */
+
+        .add-cart-btn {
+            background: #d71920 !important;
+
+            color: #ffffff !important;
+
+            border: 1px solid #d71920;
+        }
+
+
+        .add-cart-btn:hover {
+            background: #263238 !important;
+
+            border-color: #263238;
+        }
+
+
+        /* =========================================
+           EMPTY PRODUCTS
+        ========================================= */
+
+        .empty-products {
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            padding: 70px 20px;
+
+            background: #f4f5f6;
+
+            border: 1px solid #c3cbd1;
+
+            border-radius: 8px;
+        }
+
+
+        .empty-products h2 {
+            color: #263238;
+
+            font-size: 22px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .empty-products p {
+            color: #5f6b73;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        footer {
+            background: #263238 !important;
+
+            border-top: 4px solid #d71920;
+
+            padding: 28px 20px;
+
+            text-align: center;
+        }
+
+
+        footer h3 {
+            color: #ffffff !important;
+
+            font-size: 17px;
+
+            margin-bottom: 7px;
+        }
+
+
+        footer p {
+            color: #b8c1c6 !important;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+
+            margin: 3px 0;
+        }
+
+
+        /* =========================================
+           4 PRODUCTS
+        ========================================= */
+
+        @media (max-width: 1150px) {
+
+            .product-grid {
+                grid-template-columns:
+                    repeat(4, 1fr);
+            }
+
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 12px;
+            }
+        }
+
+
+        /* =========================================
+           3 PRODUCTS
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .product-grid {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .section-title h1 {
+                font-size: 38px;
+            }
+        }
+
+
+        /* =========================================
+           2 PRODUCTS
+        ========================================= */
+
+        @media (max-width: 700px) {
+
+            .header {
+                padding: 10px 15px;
+            }
+
+            .main-nav,
+            .whatsapp-btn {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .product-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 15px;
+            }
+
+            .products-page {
+                padding: 45px 15px 60px;
+            }
+
+            .section-title {
+                margin-bottom: 30px;
+            }
+
+            .section-title h1 {
+                font-size: 33px;
+            }
+
+            .product-image {
+                height: 170px;
+            }
+        }
+
+
+        /* =========================================
+           1 PRODUCT
+        ========================================= */
+
+        @media (max-width: 480px) {
+
+            .logo img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo span {
+                font-size: 15px;
+            }
+
+            .product-search form {
+                flex-direction: column;
+            }
+
+            .product-search input {
+                width: 100%;
+            }
+
+            .product-search button {
+                width: 100%;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h1 {
+                font-size: 29px;
+            }
+
+            .section-title span {
+                font-size: 13px;
+            }
+
+            .product-image {
+                height: 215px;
+            }
+
+            .product-card-content {
+                padding: 17px;
+            }
+
+            .product-card-content h3 {
+                font-size: 19px !important;
+            }
+
+            .product-description {
+                font-size: 13px !important;
+            }
+
+            .product-card-buttons a {
+                height: 38px;
+
+                font-size: 11px;
+            }
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
 <header class="header">
-    
+
+
+    <!-- LOGO -->
 
     <a href="/" class="logo">
-    <img src="{% static 'main/logo.png' %}" alt="3D Tech Trading Company">
-    <span>3D Tech Trading Company</span>
-</a>
+
+        <img
+            src="{% static 'main/logo.png' %}"
+            alt="3D Tech Trading Company"
+        >
+
+        <span>
+            3D Tech Trading Company
+        </span>
+
+    </a>
+
+
+
+    <!-- DESKTOP NAVIGATION -->
 
     <nav class="main-nav">
+
 
         <a href="/">
             Home
         </a>
 
+
+        <a href="{% url 'categories' %}">
+            Categories
+        </a>
+
+
         <a href="{% url 'products' %}">
             Products
         </a>
 
-        <a href="{% url 'categories' %}">
-    Categories
-</a>
 
         <a href="{% url 'about' %}">
-    About Us
-</a>
+            About Us
+        </a>
+
 
         <a href="{% url 'contact' %}">
-    Contact
-</a>
+            Contact
+        </a>
+
 
         <a href="{% url 'cart' %}">
             🛒 Cart ({{ cart_count }})
         </a>
+
+
         <a href="{% url 'admin:login' %}">
-    ⚙ Admin Login
-</a>
+            ⚙ Admin Login
+        </a>
+
 
     </nav>
 
-    <a class="whatsapp-btn"
-       href="https://wa.me/917411837088"
-       target="_blank">
+
+
+    <!-- WHATSAPP -->
+
+    <a
+        class="whatsapp-btn"
+        href="https://wa.me/917411837088"
+        target="_blank"
+    >
+
         📲 WhatsApp
+
     </a>
-    <button class="menu-toggle" onclick="toggleMenu()" type="button">
-    ☰
-</button>
+
+
+
+    <!-- MOBILE MENU -->
+
+    <button
+        class="menu-toggle"
+        onclick="toggleMenu()"
+        type="button"
+    >
+
+        ☰
+
+    </button>
+
 
 </header>
 
-<div class="mobile-menu" id="mobileMenu">
 
-    <a href="{% url 'home' %}">Home</a>
 
-    <a href="{% url 'products' %}">Products</a>
+<!-- =========================================
+     MOBILE MENU
+========================================= -->
+
+<div
+    class="mobile-menu"
+    id="mobileMenu"
+>
+
+
+    <a href="{% url 'home' %}">
+        Home
+    </a>
+
 
     <a href="{% url 'categories' %}">
-    Categories
-</a>
+        Categories
+    </a>
+
+
+    <a href="{% url 'products' %}">
+        Products
+    </a>
+
 
     <a href="{% url 'about' %}">
-    About Us
-</a>
+        About Us
+    </a>
+
 
     <a href="{% url 'contact' %}">
-    Contact
-</a>
+        Contact
+    </a>
+
 
     <a href="{% url 'cart' %}">
         🛒 Cart ({{ cart_count }})
     </a>
 
+
     <a href="{% url 'admin:login' %}">
         ⚙ Admin Login
     </a>
 
-    <a href="https://wa.me/917411837088" target="_blank">
+
+    <a
+        href="https://wa.me/917411837088"
+        target="_blank"
+    >
         📲 WhatsApp
     </a>
+
 
 </div>
 
 
 
+<!-- =========================================
+     PRODUCTS PAGE
+========================================= -->
+
 <section class="products-page">
+
+
+    <!-- =====================================
+         PAGE TITLE
+    ====================================== -->
 
     <div class="section-title">
 
-        <p>OUR PRODUCTS</p>
 
-        <h1>Industrial Product Range</h1>
+        <p>
+            OUR PRODUCTS
+        </p>
+
+
+        <h1>
+
+            Industrial
+
+            <span style="color:#d71920;">
+                Product Range
+            </span>
+
+        </h1>
+
 
         <span>
+
             Explore our range of industrial equipment,
-            machinery and engineering products.
+            machinery, components and engineering products.
+
         </span>
+
 
     </div>
 
 
-    <!-- PRODUCT SEARCH -->
+
+    <!-- =====================================
+         SEARCH
+    ====================================== -->
 
     <div class="product-search">
 
-        <form method="GET" action="/products/">
+
+        <form
+            method="GET"
+            action="/products/"
+        >
+
 
             <input
                 type="text"
@@ -128,167 +1304,342 @@
                 value="{{ search_query }}"
             >
 
+
             <button type="submit">
+
                 🔎 Search
+
             </button>
+
 
         </form>
 
+
     </div>
 
 
-    <!-- CATEGORY DROPDOWN -->
+
+    <!-- =====================================
+         CATEGORY DROPDOWN
+    ====================================== -->
 
     <div class="category-dropdown-custom">
 
-    <button type="button" class="category-dropdown-button" onclick="toggleCategoryDropdown()">
-        <span>All Categories</span>
-        <span>▼</span>
-    </button>
 
-    <div class="category-dropdown-menu" id="categoryDropdownMenu">
+        <button
+            type="button"
+            class="category-dropdown-button"
+            onclick="toggleCategoryDropdown()"
+        >
 
-        <a href="{% url 'products' %}">
-            All Categories
-        </a>
+            <span>
+                All Categories
+            </span>
 
-        {% for category in categories %}
 
-            <a href="{% url 'products' %}?category={{ category.id }}">
-                {{ category.name }}
+            <span>
+                ▼
+            </span>
+
+        </button>
+
+
+
+        <div
+            class="category-dropdown-menu"
+            id="categoryDropdownMenu"
+        >
+
+
+            <a href="{% url 'products' %}">
+
+                All Categories
+
             </a>
 
-        {% endfor %}
+
+            {% for category in categories %}
+
+
+                <a
+                    href="{% url 'products' %}?category={{ category.id }}"
+                >
+
+                    {{ category.name }}
+
+                </a>
+
+
+            {% endfor %}
+
+
+        </div>
+
 
     </div>
 
-</div>
 
-    <!-- PRODUCTS -->
+
+    <!-- =====================================
+         PRODUCT GRID
+    ====================================== -->
 
     <div class="product-grid">
 
+
         {% for product in products %}
+
+
+        <!-- =================================
+             PRODUCT CARD
+        ================================== -->
 
         <div class="product-card">
 
+
+            <!-- IMAGE -->
+
             <div class="product-image">
 
+
                 {% if product.image %}
+
 
                     <img
                         src="{{ product.image.url }}"
                         alt="{{ product.name }}"
                     >
 
+
                 {% else %}
 
+
                     <div class="no-image">
+
                         No Image Available
+
                     </div>
 
+
                 {% endif %}
+
 
             </div>
 
 
+
+            <!-- PRODUCT CONTENT -->
+
             <div class="product-card-content">
 
+
+                <!-- CATEGORY -->
+
                 <p class="product-category">
+
                     {{ product.category.name }}
+
                 </p>
 
 
+
+                <!-- PRODUCT NAME -->
+
                 <h3>
+
                     {{ product.name }}
+
                 </h3>
 
 
+
+                <!-- DESCRIPTION -->
+
                 {% if product.description %}
 
+
                     <p class="product-description">
+
                         {{ product.description|truncatewords:15 }}
+
                     </p>
+
 
                 {% endif %}
 
 
+
+                <!-- BUTTONS -->
+
                 <div class="product-card-buttons">
+
 
                     <a
                         href="{% url 'product_detail' product.id %}"
                         class="view-product-btn"
                     >
+
                         View Details
+
                     </a>
+
 
 
                     <a
                         href="{% url 'add_to_cart' product.id %}"
                         class="add-cart-btn"
                     >
+
                         🛒 Add to Cart
+
                     </a>
+
 
                 </div>
 
+
             </div>
+
 
         </div>
 
 
         {% empty %}
 
+
+        <!-- =================================
+             EMPTY PRODUCTS
+        ================================== -->
+
         <div class="empty-products">
 
-            <h2>No products available</h2>
+
+            <h2>
+
+                No products available
+
+            </h2>
+
 
             <p>
+
                 Please check back soon.
+
             </p>
+
 
         </div>
 
+
         {% endfor %}
 
+
     </div>
+
 
 </section>
 
 
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
 <footer>
 
+
     <h3>
+
         3D Tech Trading Company
+
     </h3>
 
-    <p>
-        Industrial Products & Engineering Solutions
-    </p>
 
     <p>
+
+        Industrial Products
+
+        <span style="color:#d71920;">
+            •
+        </span>
+
+        Engineering Solutions
+
+    </p>
+
+
+    <p>
+
         © 2026 3D Tech Trading Company.
         All Rights Reserved.
+
     </p>
 
+
 </footer>
- <script>
+
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script>
+
+
 function toggleMenu() {
-    const menu = document.getElementById("mobileMenu");
+
+    const menu =
+        document.getElementById("mobileMenu");
 
     menu.classList.toggle("active");
+
 }
+
+
 
 function toggleCategoryDropdown() {
 
-    const menu = document.getElementById("categoryDropdownMenu");
+    const menu =
+        document.getElementById("categoryDropdownMenu");
 
     menu.classList.toggle("active");
 
 }
 
+
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const dropdown =
+            document.querySelector(
+                ".category-dropdown-custom"
+            );
+
+        const menu =
+            document.getElementById(
+                "categoryDropdownMenu"
+            );
+
+
+        if (
+            dropdown &&
+            !dropdown.contains(event.target)
+        ) {
+
+            menu.classList.remove("active");
+
+        }
+
+    }
+);
+
+
 </script>
 
-</body>
-</html>
 
+</body>
+
+</html>

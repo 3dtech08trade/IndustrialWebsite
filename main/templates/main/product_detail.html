@@ -1,9 +1,11 @@
+
 {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -11,20 +13,1036 @@
 
     <title>{{ product.name }} | 3D Tech Trading Company</title>
 
-    <link rel="stylesheet"
-          href="{% static 'main/style.css' %}">
+
+    <style>
+
+        /* =========================================
+           GLOBAL
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            background: #e7e9eb;
+
+            color: #292d31;
+
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        .header {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            min-height: 78px;
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 10px 35px;
+
+            background: #292d31;
+
+            border-bottom: 3px solid #c62828;
+
+            z-index: 9999;
+
+            box-shadow: 0 3px 18px rgba(0,0,0,0.25);
+        }
+
+
+        /* LOGO */
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: white;
+
+            font-size: 19px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+        .logo img {
+
+            width: 48px;
+
+            height: 48px;
+
+            object-fit: contain;
+
+            border-radius: 6px;
+        }
+
+
+        /* NAVIGATION */
+
+        .main-nav {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            margin-left: auto;
+        }
+
+
+        .main-nav a {
+            color: #e1e5e8 !important;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            position: relative;
+
+            padding: 7px 0;
+
+            transition: 0.25s;
+        }
+
+
+        .main-nav a:hover {
+            color: #ffffff !important;
+        }
+
+
+        .main-nav a::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            bottom: 0;
+
+            width: 0;
+
+            height: 2px;
+
+            background: #d71920;
+
+            transition: 0.25s;
+        }
+
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+
+
+        /* =================================================
+           WHATSAPP BUTTON
+        ================================================= */
+
+        .whatsapp-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 10px 15px;
+
+            background: #09a545 !important;
+
+            color: #ffffff !important;
+
+            text-decoration: none;
+
+            border-radius: 5px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+
+        .whatsapp-btn:hover {
+            background: #b9141a !important;
+
+            transform: translateY(-2px);
+        }
+
+
+        .whatsapp-btn::after {
+            display: none !important;
+        }
+
+
+        /* MOBILE BUTTON */
+
+        .menu-toggle {
+
+            display: none;
+
+            margin-left: auto;
+
+            background: transparent;
+
+            border: none;
+
+            color: white;
+
+            font-size: 28px;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================================
+           MOBILE MENU
+        ========================================= */
+
+        .mobile-menu {
+
+            display: none;
+
+            position: fixed;
+
+            top: 78px;
+
+            left: 0;
+
+            width: 100%;
+
+            background: #292d31;
+
+            border-top: 1px solid #5c6267;
+
+            z-index: 9998;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+        }
+
+        .mobile-menu.active {
+
+            display: block;
+        }
+
+        .mobile-menu a {
+
+            display: block;
+
+            padding: 15px 25px;
+
+            color: white;
+
+            border-bottom: 1px solid #454a4f;
+
+            font-weight: 600;
+        }
+
+        .mobile-menu a:hover {
+
+            background: #3b4146;
+
+            color: #e53935;
+        }
+
+
+        /* =========================================
+           PRODUCT DETAIL
+        ========================================= */
+
+        .product-detail {
+
+            max-width: 1250px;
+
+            margin: 0 auto;
+
+            padding: 130px 30px 70px;
+
+            display: grid;
+
+            grid-template-columns: 48% 52%;
+
+            gap: 45px;
+
+            align-items: start;
+        }
+
+
+        /* =========================================
+           PRODUCT IMAGE SECTION
+        ========================================= */
+
+        .product-image-section {
+
+            position: sticky;
+
+            top: 105px;
+
+            min-height: 520px;
+
+            background: white;
+
+            border-radius: 10px;
+
+            border-top: 5px solid #c62828;
+
+            padding: 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            box-shadow: 0 8px 28px rgba(0,0,0,0.10);
+
+            overflow: hidden;
+        }
+
+
+        /* IMAGE BACKGROUND */
+
+        .product-image-section::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 380px;
+
+            height: 380px;
+
+            border-radius: 50%;
+
+            background: #f0f1f2;
+
+            z-index: 0;
+        }
+
+
+        /* PRODUCT IMAGE */
+
+        .detail-image {
+
+            position: relative;
+
+            z-index: 1;
+
+            max-width: 100%;
+
+            max-height: 460px;
+
+            width: auto;
+
+            height: auto;
+
+            object-fit: contain;
+
+            transition: 0.4s;
+        }
+
+        .detail-image:hover {
+
+            transform: scale(1.04);
+        }
+
+
+        /* NO IMAGE */
+
+        .detail-no-image {
+
+            position: relative;
+
+            z-index: 1;
+
+            width: 100%;
+
+            height: 400px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #e7e9eb;
+
+            border: 1px dashed #aeb4b8;
+
+            border-radius: 7px;
+
+            color: #5c6267;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           PRODUCT INFORMATION
+        ========================================= */
+
+        .product-information {
+
+            padding: 5px 0;
+        }
+
+
+        /* CATEGORY */
+
+        .product-category {
+
+            display: inline-block;
+
+            background: #c62828;
+
+            color: white;
+
+            padding: 6px 13px;
+
+            border-radius: 4px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.3px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* PRODUCT TITLE */
+
+        .product-information h1 {
+
+            color: #292d31;
+
+            font-size: 42px;
+
+            line-height: 1.15;
+
+            font-weight: 800;
+
+            margin-bottom: 12px;
+        }
+
+
+        /* PRODUCT TYPE */
+
+        .product-type {
+
+            color: #5c6267;
+
+            font-size: 17px;
+
+            font-weight: 600;
+
+            margin-bottom: 25px;
+
+            padding-left: 14px;
+
+            border-left: 4px solid #c62828;
+        }
+
+
+        /* =========================================
+           CONTENT CARDS
+        ========================================= */
+
+        .product-description,
+        .product-specifications {
+
+            background: white;
+
+            border-radius: 7px;
+
+            padding: 22px 25px;
+
+            margin-top: 18px;
+
+            border-left: 4px solid #c8cdd1;
+
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+
+
+        /* CONTENT HEADINGS */
+
+        .product-description h2,
+        .product-specifications h2 {
+
+            color: #292d31;
+
+            font-size: 19px;
+
+            margin-bottom: 10px;
+
+            padding-bottom: 9px;
+
+            border-bottom: 1px solid #d8dcdf;
+
+            position: relative;
+        }
+
+        .product-description h2::after,
+        .product-specifications h2::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            bottom: -1px;
+
+            width: 45px;
+
+            height: 3px;
+
+            background: #c62828;
+        }
+
+
+        /* CONTENT TEXT */
+
+        .product-description p,
+        .product-specifications p {
+
+            color: #5c6267;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+
+            white-space: pre-line;
+        }
+
+
+        /* =========================================
+           PRICE
+        ========================================= */
+
+        .product-price {
+    margin-top: 20px;
+    padding: 12px 16px;
+    background: #292d31;
+    border-radius: 6px;
+    border-left: 4px solid #c62828;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+    display: inline-block;
+}
+
+.product-price::before {
+    content: "PRICE";
+    display: block;
+    color: #c8cdd1;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 2px;
+}
+
+.product-price span {
+    color: white;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+        /* =========================================
+           ACTION BUTTONS
+        ========================================= */
+
+        .product-actions {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 14px;
+
+            margin-top: 20px;
+        }
+
+
+        /* ADD CART */
+
+        .add-cart-btn {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 14px 18px;
+
+            background: #292d31;
+
+            color: white;
+
+            border: 2px solid #292d31;
+
+            border-radius: 5px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .add-cart-btn:hover {
+
+            background: #3b4146;
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+
+        /* WHATSAPP PRODUCT */
+
+        .whatsapp-product-btn {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 14px 18px;
+
+            background: #c62828;
+
+            color: white;
+
+            border: 2px solid #c62828;
+
+            border-radius: 5px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .whatsapp-product-btn:hover {
+
+            background: #a91f1f;
+
+            border-color: #a91f1f;
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 5px 15px rgba(198,40,40,0.25);
+        }
+
+
+        /* =========================================
+           TRUST / SERVICE CARDS
+        ========================================= */
+
+        .product-benefits {
+
+            max-width: 1250px;
+
+            margin: 0 auto;
+
+            padding: 0 30px 70px;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+        .benefit-card {
+
+            background: white;
+
+            padding: 22px;
+
+            border-radius: 7px;
+
+            border-top: 3px solid #c62828;
+
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+
+            transition: 0.3s;
+        }
+
+        .benefit-card:hover {
+
+            transform: translateY(-4px);
+
+            box-shadow: 0 8px 20px rgba(0,0,0,0.11);
+        }
+
+        .benefit-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #292d31;
+
+            color: white;
+
+            border-radius: 5px;
+
+            font-size: 20px;
+
+            margin-bottom: 13px;
+        }
+
+        .benefit-card h3 {
+
+            color: #292d31;
+
+            font-size: 16px;
+
+            margin-bottom: 6px;
+        }
+
+        .benefit-card p {
+
+            color: #5c6267;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        footer {
+
+            background: #292d31;
+
+            color: #e7e9eb;
+
+            text-align: center;
+
+            padding: 35px 20px;
+
+            border-top: 3px solid #c62828;
+        }
+
+        footer h3 {
+
+            color: white;
+
+            font-size: 19px;
+
+            margin-bottom: 8px;
+        }
+
+        footer p {
+
+            font-size: 13px;
+
+            margin: 6px 0;
+
+            color: #c8cdd1;
+        }
+
+
+        /* =========================================
+           TABLET
+        ========================================= */
+
+        @media (max-width: 1050px) {
+
+            .main-nav {
+
+                gap: 13px;
+            }
+
+            .main-nav a {
+
+                font-size: 13px;
+            }
+
+            .whatsapp-btn {
+
+                margin-left: 12px;
+
+                padding: 9px 12px;
+            }
+
+            .product-detail {
+
+                grid-template-columns: 45% 55%;
+
+                gap: 30px;
+
+                padding-left: 25px;
+
+                padding-right: 25px;
+            }
+
+            .product-information h1 {
+
+                font-size: 36px;
+            }
+
+            .product-image-section {
+
+                min-height: 450px;
+            }
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 768px) {
+
+            .header {
+
+                min-height: 70px;
+
+                padding: 8px 18px;
+            }
+
+            .logo {
+
+                font-size: 15px;
+            }
+
+            .logo img {
+
+                width: 42px;
+
+                height: 42px;
+            }
+
+            .main-nav,
+            .whatsapp-btn {
+
+                display: none;
+            }
+
+            .menu-toggle {
+
+                display: block;
+            }
+
+            .mobile-menu {
+
+                top: 70px;
+            }
+
+
+            /* PRODUCT */
+
+            .product-detail {
+
+                display: flex;
+
+                flex-direction: column;
+
+                padding: 105px 18px 45px;
+
+                gap: 30px;
+            }
+
+            .product-image-section {
+
+                position: relative;
+
+                top: auto;
+
+                width: 100%;
+
+                min-height: 360px;
+
+                padding: 20px;
+            }
+
+            .product-image-section::before {
+
+                width: 260px;
+
+                height: 260px;
+            }
+
+            .detail-image {
+
+                max-height: 320px;
+            }
+
+            .detail-no-image {
+
+                height: 280px;
+            }
+
+            .product-information {
+
+                width: 100%;
+            }
+
+            .product-information h1 {
+
+                font-size: 30px;
+
+                line-height: 1.2;
+            }
+
+            .product-type {
+
+                font-size: 15px;
+            }
+
+            .product-description,
+            .product-specifications {
+
+                padding: 19px;
+            }
+
+            .product-actions {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            /* BENEFITS */
+
+            .product-benefits {
+
+                grid-template-columns: 1fr;
+
+                padding: 0 18px 50px;
+            }
+
+        }
+
+
+        /* =========================================
+           SMALL MOBILE
+        ========================================= */
+
+        @media (max-width: 450px) {
+
+            .logo span {
+
+                font-size: 13px;
+            }
+
+            .product-detail {
+
+                padding-left: 15px;
+
+                padding-right: 15px;
+            }
+
+            .product-image-section {
+
+                min-height: 300px;
+            }
+
+            .detail-image {
+
+                max-height: 270px;
+            }
+
+            .product-information h1 {
+
+                font-size: 26px;
+            }
+
+            .product-category {
+
+                font-size: 10px;
+            }
+
+            .product-price span {
+
+                font-size: 23px;
+            }
+
+            .benefit-card {
+
+                padding: 18px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-<!-- HEADER -->
+
+<!-- =========================================
+     HEADER
+========================================= -->
 
 <header class="header">
 
+
     <a href="/" class="logo">
-    <img src="{% static 'main/logo.png' %}" alt="3D Tech Trading Company">
-    <span>3D Tech Trading Company</span>
-</a>
+
+        <img src="{% static 'main/logo.png' %}"
+             alt="3D Tech Trading Company">
+
+        <span>
+            3D Tech Trading Company
+        </span>
+
+    </a>
+
 
     <nav class="main-nav">
 
@@ -32,57 +1050,80 @@
             Home
         </a>
 
+        <a href="{% url 'categories' %}">
+            Categories
+        </a>
+
         <a href="{% url 'products' %}">
             Products
         </a>
 
-        <a href="{% url 'categories' %}">
-    Categories
-</a>
-
         <a href="{% url 'about' %}">
-    About Us
-</a>
+            About Us
+        </a>
 
         <a href="{% url 'contact' %}">
-    Contact
-</a>
+            Contact
+        </a>
+
         <a href="{% url 'cart' %}">
             🛒 Cart ({{ cart_count }})
         </a>
+
         <a href="{% url 'admin:login' %}">
-    ⚙ Admin Login
-</a>
+            ⚙ Admin Login
+        </a>
 
     </nav>
+
 
     <a class="whatsapp-btn"
        href="https://wa.me/917411837088"
        target="_blank">
+
         📲 WhatsApp
+
     </a>
-    <button class="menu-toggle" onclick="toggleMenu()" type="button">
-    ☰
-</button>
+
+
+    <button class="menu-toggle"
+            onclick="toggleMenu()"
+            type="button">
+
+        ☰
+
+    </button>
+
 
 </header>
+
+
+<!-- =========================================
+     MOBILE MENU
+========================================= -->
+
 <div class="mobile-menu" id="mobileMenu">
 
-    <a href="{% url 'home' %}">Home</a>
 
-    <a href="{% url 'products' %}">Products</a>
+    <a href="{% url 'home' %}">
+        Home
+    </a>
 
     <a href="{% url 'categories' %}">
-    Categories
-</a>
+        Categories
+    </a>
+
+    <a href="{% url 'products' %}">
+        Products
+    </a>
 
     <a href="{% url 'about' %}">
-    About Us
-</a>
+        About Us
+    </a>
 
     <a href="{% url 'contact' %}">
-    Contact
-</a>
+        Contact
+    </a>
 
     <a href="{% url 'cart' %}">
         🛒 Cart ({{ cart_count }})
@@ -92,19 +1133,27 @@
         ⚙ Admin Login
     </a>
 
-    <a href="https://wa.me/917411837088" target="_blank">
+    <a href="https://wa.me/917411837088"
+       target="_blank">
+
         📲 WhatsApp
+
     </a>
 
 </div>
 
 
-
-<!-- PRODUCT DETAILS -->
+<!-- =========================================
+     PRODUCT DETAILS
+========================================= -->
 
 <section class="product-detail">
 
+
+    <!-- PRODUCT IMAGE -->
+
     <div class="product-image-section">
+
 
         {% if product.image %}
 
@@ -115,87 +1164,129 @@
         {% else %}
 
             <div class="detail-no-image">
+
                 No Image Available
+
             </div>
 
         {% endif %}
 
+
     </div>
 
 
+    <!-- PRODUCT INFORMATION -->
+
     <div class="product-information">
 
+
+        <!-- CATEGORY -->
+
         <p class="product-category">
+
             {{ product.category.name }}
+
         </p>
 
+
+        <!-- PRODUCT NAME -->
+
         <h1>
+
             {{ product.name }}
+
         </h1>
 
 
+        <!-- PRODUCT TYPE -->
+
         {% if product.product_type %}
 
-            <h3>
+            <div class="product-type">
+
                 {{ product.product_type }}
-            </h3>
+
+            </div>
 
         {% endif %}
 
+
+        <!-- DESCRIPTION -->
 
         <div class="product-description">
 
-            <h2>Description</h2>
+            <h2>
+                Description
+            </h2>
 
             <p>
+
                 {{ product.description }}
+
             </p>
 
         </div>
 
+
+        <!-- SPECIFICATIONS -->
 
         {% if product.specifications %}
 
-        <div class="product-specifications">
+            <div class="product-specifications">
 
-            <h2>Specifications</h2>
+                <h2>
+                    Specifications
+                </h2>
 
-            <p>
-                {{ product.specifications }}
-            </p>
+                <p>
 
-        </div>
+                    {{ product.specifications }}
+
+                </p>
+
+            </div>
 
         {% endif %}
 
 
+        <!-- PRICE -->
+
         <div class="product-price">
+
 
             {% if product.price %}
 
                 <span>
+
                     ₹{{ product.price }}
+
                 </span>
 
             {% else %}
 
                 <span>
+
                     Price on Request
+
                 </span>
 
             {% endif %}
 
+
         </div>
 
 
+        <!-- ACTION BUTTONS -->
+
         <div class="product-actions">
 
+
             <a href="{% url 'add_to_cart' product.id %}"
-   class="add-cart-btn">
+               class="add-cart-btn">
 
-    🛒 Add to Cart
+                🛒 Add to Cart
 
-</a>
+            </a>
 
 
             <a href="https://wa.me/917411837088?text=Hello%2C%20I%20am%20interested%20in%20{{ product.name|urlencode }}"
@@ -206,39 +1297,121 @@
 
             </a>
 
+
         </div>
 
+
     </div>
+
 
 </section>
 
 
-<!-- FOOTER -->
+<!-- =========================================
+     SERVICE / TRUST CARDS
+========================================= -->
+
+<section class="product-benefits">
+
+
+    <div class="benefit-card">
+
+        <div class="benefit-icon">
+            ⚙
+        </div>
+
+        <h3>
+            Industrial Solutions
+        </h3>
+
+        <p>
+            Products suitable for a wide range of industrial
+            and engineering applications.
+        </p>
+
+    </div>
+
+
+    <div class="benefit-card">
+
+        <div class="benefit-icon">
+            ✓
+        </div>
+
+        <h3>
+            Quality Products
+        </h3>
+
+        <p>
+            We focus on reliable products and suitable
+            specifications for your requirements.
+        </p>
+
+    </div>
+
+
+    <div class="benefit-card">
+
+        <div class="benefit-icon">
+            📞
+        </div>
+
+        <h3>
+            Enquiry Support
+        </h3>
+
+        <p>
+            Contact our team for product details,
+            specifications, pricing and quotations.
+        </p>
+
+    </div>
+
+
+</section>
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
 
 <footer>
+
 
     <h3>
         3D Tech Trading Company
     </h3>
 
+
     <p>
         Industrial Products & Engineering Solutions
     </p>
+
 
     <p>
         © 2026 3D Tech Trading Company.
         All Rights Reserved.
     </p>
 
+
 </footer>
- <script>
+
+
+<!-- =========================================
+     MOBILE MENU SCRIPT
+========================================= -->
+
+<script>
+
 function toggleMenu() {
+
     const menu = document.getElementById("mobileMenu");
 
     menu.classList.toggle("active");
-}
-</script>
 
+}
+
+</script>
 
 
 </body>

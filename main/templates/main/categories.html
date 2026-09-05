@@ -7,45 +7,1052 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Categories | 3D Tech Trading Company</title>
+    <title>Product Categories | 3D Tech Trading Company</title>
 
-    <link rel="stylesheet"
-          href="{% static 'main/style.css' %}">
+
+    <style>
+
+        /* =========================================
+           RESET
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #e4e8eb;
+            color: #263238;
+            overflow-x: hidden;
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        .site-header {
+            width: 100%;
+            background: #263238;
+            border-bottom: 3px solid #d71920;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            width: 100%;
+            max-width: 1250px;
+
+            margin: auto;
+            padding: 12px 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+
+        /* =========================================
+           BRAND
+        ========================================= */
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            text-decoration: none;
+            color: #ffffff;
+
+            white-space: nowrap;
+        }
+
+        .brand-logo {
+            width: 44px;
+            height: 44px;
+
+            background: #d71920;
+            border-radius: 6px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            color: #ffffff;
+            font-size: 22px;
+        }
+
+        .brand-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .brand-name {
+            font-size: 19px;
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           NAVIGATION
+        ========================================= */
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .main-nav a {
+            position: relative;
+
+            color: #e1e5e8;
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 500;
+
+            padding: 7px 0;
+
+            transition: 0.25s;
+        }
+
+        .main-nav a:hover {
+            color: #ffffff;
+        }
+
+        .main-nav a:not(.whatsapp-btn)::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 0;
+            height: 2px;
+
+            background: #d71920;
+
+            transition: 0.25s;
+        }
+
+        .main-nav a:not(.whatsapp-btn):hover::after {
+            width: 100%;
+        }
+
+
+        /* =========================================
+           WHATSAPP
+        ========================================= */
+
+        .whatsapp-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 10px 15px;
+
+            background: #09a545 !important;
+
+            color: #ffffff !important;
+
+            text-decoration: none;
+
+            border-radius: 5px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+
+        .whatsapp-btn:hover {
+            background: #b9141a !important;
+
+            transform: translateY(-2px);
+        }
+
+
+        .whatsapp-btn::after {
+            display: none !important;
+        }
+
+        /* =========================================
+           MOBILE BUTTON
+        ========================================= */
+
+        .menu-button {
+            display: none;
+
+            width: 42px;
+            height: 42px;
+
+            border: none;
+            border-radius: 5px;
+
+            background: #d71920;
+            color: #ffffff;
+
+            font-size: 22px;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================================
+           MOBILE MENU
+        ========================================= */
+
+        .mobile-menu {
+            display: none;
+
+            background: #263238;
+
+            border-top: 1px solid #45545c;
+
+            padding: 10px 20px 15px;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+
+            padding: 12px 0;
+
+            color: #e1e5e8;
+
+            text-decoration: none;
+
+            border-bottom: 1px solid #3b474d;
+
+            font-size: 14px;
+        }
+
+        .mobile-menu a:hover {
+            color: #d71920;
+        }
+
+
+        /* =========================================
+           MAIN PAGE
+        ========================================= */
+
+        .categories-page {
+            min-height: calc(100vh - 75px);
+
+            padding: 55px 20px 70px;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(215, 25, 32, 0.07),
+                    transparent 30%
+                ),
+                #e4e8eb;
+        }
+
+
+        /* =========================================
+           PAGE TITLE
+        ========================================= */
+
+        .page-title {
+            max-width: 850px;
+
+            margin: 0 auto 38px;
+
+            text-align: center;
+        }
+
+        .title-label {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+
+            margin-bottom: 12px;
+
+            color: #d71920;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+        }
+
+        .title-line {
+            width: 30px;
+            height: 2px;
+
+            background: #d71920;
+        }
+
+        .page-title h1 {
+            font-size: 43px;
+
+            line-height: 1.1;
+
+            color: #263238;
+
+            font-weight: 800;
+
+            letter-spacing: -1px;
+
+            text-transform: uppercase;
+        }
+
+        .page-title h1 span {
+            color: #d71920;
+        }
+
+
+        /* =========================================
+           TITLE DECORATION
+        ========================================= */
+
+        .title-decoration {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 4px;
+
+            margin: 14px auto 14px;
+        }
+
+        .title-decoration span:nth-child(1),
+        .title-decoration span:nth-child(3) {
+
+            width: 7px;
+            height: 7px;
+
+            background: #d71920;
+
+            transform: skewX(-25deg);
+        }
+
+        .title-decoration span:nth-child(2) {
+
+            width: 50px;
+            height: 3px;
+
+            background: #d71920;
+
+            transform: skewX(-25deg);
+        }
+
+        .page-title p {
+
+            max-width: 650px;
+
+            margin: auto;
+
+            color: #5f6b73;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           CATEGORY GRID
+           
+           5 CARDS IN ONE ROW
+        ========================================= */
+
+        .category-grid {
+
+            width: 100%;
+
+            max-width: 1250px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(5, 1fr);
+
+            gap: 16px;
+        }
+
+
+        /* =========================================
+           CATEGORY CARD
+        ========================================= */
+
+        .category-card {
+
+            position: relative;
+
+            display: flex;
+
+            flex-direction: column;
+
+            min-width: 0;
+
+            min-height: 360px;
+
+            background: #f4f5f6;
+
+            border: 1px solid #c3cbd1;
+
+            border-radius: 8px;
+
+            overflow: hidden;
+
+            text-decoration: none;
+
+            color: #263238;
+
+            box-shadow:
+                0 4px 10px rgba(38, 50, 56, 0.09);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .category-card:hover {
+
+            transform: translateY(-6px);
+
+            border-color: #d71920;
+
+            box-shadow:
+                0 12px 25px rgba(38, 50, 56, 0.17);
+        }
+
+
+        /* =========================================
+           RED TOP STRIP
+        ========================================= */
+
+        .card-top-line {
+
+            width: 100%;
+            height: 4px;
+
+            background: #d71920;
+        }
+
+
+        /* =========================================
+           CATEGORY IMAGE
+        ========================================= */
+
+        .category-image {
+    width: 100%;
+    height: 100%;
+
+    background: #d5dbe0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 0;
+}
+
+        .category-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    display: block;
+
+    transition: transform 0.4s ease;
+}
+
+        .category-card:hover
+        .category-image img {
+
+            transform: scale(1.07);
+        }
+
+
+        /* =========================================
+           IMAGE LABEL
+        ========================================= */
+
+        .image-label {
+
+            position: absolute;
+
+            top: 9px;
+            left: 9px;
+
+            padding: 5px 7px;
+
+            background: #263238;
+
+            color: #ffffff;
+
+            border-radius: 3px;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================================
+           NO IMAGE
+        ========================================= */
+
+        .category-no-image {
+
+            width: 58px;
+            height: 58px;
+
+            border-radius: 50%;
+
+            background: #e4e8eb;
+
+            border: 2px solid #aeb8be;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            color: #d71920;
+
+            font-size: 25px;
+        }
+
+
+        /* =========================================
+           CARD CONTENT
+        ========================================= */
+
+        .category-content {
+
+            padding: 16px 16px 15px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            flex: 1;
+        }
+
+
+        /* =========================================
+           NUMBER
+        ========================================= */
+
+        .category-number {
+
+            color: #d71920;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 6px;
+        }
+
+
+        /* =========================================
+           CATEGORY NAME
+        ========================================= */
+
+        .category-content h3 {
+
+            color: #263238;
+
+            font-size: 18px;
+
+            line-height: 1.25;
+
+            margin-bottom: 7px;
+
+            transition: 0.25s;
+        }
+
+        .category-card:hover
+        .category-content h3 {
+
+            color: #d71920;
+        }
+
+
+        /* =========================================
+           DESCRIPTION
+        ========================================= */
+
+        .category-description {
+
+            color: #5f6b73;
+
+            font-size: 12px;
+
+            line-height: 1.45;
+
+            margin-bottom: 12px;
+        }
+
+
+        /* =========================================
+           EXPLORE BUTTON
+        ========================================= */
+
+        .explore-link {
+
+            margin-top: auto;
+
+            padding-top: 10px;
+
+            border-top: 1px solid #cbd2d7;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            color: #38566f;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.7px;
+        }
+
+        .explore-arrow {
+
+            width: 26px;
+            height: 26px;
+
+            border-radius: 3px;
+
+            background: #d71920;
+
+            color: #ffffff;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 15px;
+
+            transition: 0.3s;
+        }
+
+        .category-card:hover
+        .explore-link {
+
+            color: #d71920;
+        }
+
+        .category-card:hover
+        .explore-arrow {
+
+            background: #263238;
+
+            transform: translateX(3px);
+        }
+
+
+        /* =========================================
+           EMPTY CATEGORY
+        ========================================= */
+
+        .empty-category {
+
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            padding: 60px 20px;
+
+            background: #f4f5f6;
+
+            border: 1px solid #c3cbd1;
+
+            border-radius: 8px;
+        }
+
+        .empty-category-icon {
+
+            font-size: 40px;
+
+            color: #d71920;
+
+            margin-bottom: 12px;
+        }
+
+        .empty-category h3 {
+
+            color: #263238;
+
+            font-size: 21px;
+
+            margin-bottom: 7px;
+        }
+
+        .empty-category p {
+
+            color: #5f6b73;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .site-footer {
+
+            background: #263238;
+
+            border-top: 4px solid #d71920;
+
+            padding: 28px 20px;
+
+            text-align: center;
+        }
+
+        .site-footer h3 {
+
+            color: #ffffff;
+
+            font-size: 17px;
+
+            margin-bottom: 7px;
+        }
+
+        .site-footer p {
+
+            color: #b8c1c6;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+        .footer-red {
+
+            color: #d71920;
+        }
+
+
+        /* =========================================
+           4 COLUMNS
+           TABLET / SMALL LAPTOP
+        ========================================= */
+
+        @media (max-width: 1150px) {
+
+            .category-grid {
+
+                grid-template-columns:
+                    repeat(4, 1fr);
+            }
+
+            .main-nav {
+
+                gap: 13px;
+            }
+
+            .main-nav a {
+
+                font-size: 12px;
+            }
+        }
+
+
+        /* =========================================
+           3 COLUMNS
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .category-grid {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .page-title h1 {
+
+                font-size: 39px;
+            }
+        }
+
+
+        /* =========================================
+           2 COLUMNS
+        ========================================= */
+
+        @media (max-width: 700px) {
+
+            .main-nav {
+
+                display: none;
+            }
+
+            .menu-button {
+
+                display: block;
+            }
+
+            .category-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 16px;
+            }
+
+            .categories-page {
+
+                padding: 45px 15px 60px;
+            }
+
+            .category-image {
+
+                height: 170px;
+            }
+
+            .page-title {
+
+                margin-bottom: 32px;
+            }
+
+            .page-title h1 {
+
+                font-size: 34px;
+            }
+        }
+
+
+        /* =========================================
+           1 COLUMN
+        ========================================= */
+
+        @media (max-width: 480px) {
+
+            .header-container {
+
+                padding: 10px 15px;
+            }
+
+            .brand-logo {
+
+                width: 40px;
+                height: 40px;
+            }
+
+            .brand-name {
+
+                font-size: 15px;
+            }
+
+            .category-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 18px;
+            }
+
+            .category-card {
+
+                min-height: 390px;
+            }
+
+            .category-image {
+
+                height: 210px;
+            }
+
+            .page-title h1 {
+
+                font-size: 30px;
+            }
+
+            .title-label {
+
+                font-size: 9px;
+
+                letter-spacing: 2px;
+            }
+
+            .title-line {
+
+                width: 22px;
+            }
+
+            .page-title p {
+
+                font-size: 13px;
+            }
+        }
+
+    </style>
 
 </head>
+
 
 <body>
 
 
-<!-- HEADER -->
+<!-- =========================================
+     HEADER
+========================================= -->
 
-<header class="header">
+<header class="site-header">
 
-    <a href="/" class="logo">
+    <div class="header-container">
 
-        <img src="{% static 'main/logo.png' %}"
+
+        <!-- BRAND -->
+
+        <a href="/" class="brand">
+
+            <div class="brand-logo">
+
+                 <img src="{% static 'main/logo.png' %}"
              alt="3D Tech Trading Company">
 
-        <span>3D Tech Trading Company</span>
 
-    </a>
+            </div>
 
 
-    <nav class="main-nav">
+            <div class="brand-name">
+
+                3D Tech Trading Company
+
+            </div>
+
+        </a>
+
+
+
+        <!-- DESKTOP NAV -->
+
+        <nav class="main-nav">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="{% url 'categories' %}">
+                Categories
+            </a>
+
+            <a href="{% url 'products' %}">
+                Products
+            </a>
+
+            <a href="{% url 'about' %}">
+                About Us
+            </a>
+
+            <a href="{% url 'contact' %}">
+                Contact
+            </a>
+
+            <a href="{% url 'cart' %}">
+                🛒 Cart ({{ cart_count }})
+            </a>
+
+            <a href="{% url 'admin:login' %}">
+                ⚙ Admin Login
+            </a>
+
+            <a
+                href="https://wa.me/917411837088"
+                target="_blank"
+                class="whatsapp-btn"
+            >
+                📲 WhatsApp
+            </a>
+
+        </nav>
+
+
+
+        <!-- MOBILE BUTTON -->
+
+        <button
+            class="menu-button"
+            onclick="toggleMenu()"
+        >
+
+            ☰
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- MOBILE MENU -->
+
+    <div
+        class="mobile-menu"
+        id="mobileMenu"
+    >
 
         <a href="/">
             Home
         </a>
 
-        <a href="{% url 'products' %}">
-            Products
-        </a>
-
         <a href="{% url 'categories' %}">
             Categories
+        </a>
+
+        <a href="{% url 'products' %}">
+            Products
         </a>
 
         <a href="{% url 'about' %}">
@@ -64,186 +1071,217 @@
             ⚙ Admin Login
         </a>
 
-    </nav>
+        <a
+            href="https://wa.me/917411837088"
+            target="_blank"
+        >
+            💬 WhatsApp
+        </a>
 
-
-    <a class="whatsapp-btn"
-       href="https://wa.me/917411837088"
-       target="_blank">
-
-        📲 WhatsApp
-
-    </a>
-
-
-    <!-- MOBILE HAMBURGER -->
-
-    <button class="menu-toggle"
-            onclick="toggleMenu()"
-            type="button">
-
-        ☰
-
-    </button>
+    </div>
 
 </header>
 
 
-<!-- MOBILE MENU -->
 
-<div class="mobile-menu"
-     id="mobileMenu">
+<!-- =========================================
+     MAIN
+========================================= -->
 
-    <a href="/">
-        Home
-    </a>
-
-    <a href="{% url 'products' %}">
-        Products
-    </a>
-
-    <a href="{% url 'categories' %}">
-        Categories
-    </a>
-
-    <a href="{% url 'about' %}">
-        About Us
-    </a>
-
-    <a href="{% url 'contact' %}">
-        Contact
-    </a>
-
-    <a href="{% url 'cart' %}">
-        🛒 Cart ({{ cart_count }})
-    </a>
-
-    <a href="{% url 'admin:login' %}">
-        ⚙ Admin Login
-    </a>
-
-</div>
+<main class="categories-page">
 
 
-<!-- CATEGORIES PAGE -->
+    <!-- =====================================
+         TITLE
+    ====================================== -->
 
-<main style="
-    width: 100%;
-    min-height: 650px;
-    padding: 80px 20px;
-    background: #f5f7fa;
-    box-sizing: border-box;
-">
+    <section class="page-title">
 
 
-    <!-- PAGE TITLE -->
+        <div class="title-label">
 
-    <div style="
-        max-width: 900px;
-        margin: 0 auto 50px;
-        text-align: center;
-    ">
+            <span class="title-line"></span>
 
-        <p style="
-            color: #0b5ed7;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        ">
-            OUR RANGE
-        </p>
+            <span>
+                Our Industrial Solutions
+            </span>
+
+            <span class="title-line"></span>
+
+        </div>
 
 
-        <h1 style="
-            margin: 0 0 15px;
-            font-size: 42px;
-            line-height: 1.2;
-            color: #17202a;
-        ">
-            Product Categories
+
+        <h1>
+
+            Product
+
+            <span>
+                Categories
+            </span>
+
         </h1>
 
 
-        <p style="
-            margin: 0 auto;
-            max-width: 650px;
-            color: #666;
-            font-size: 17px;
-            line-height: 1.7;
-        ">
-            Find the right industrial products
-            for your application.
+
+        <div class="title-decoration">
+
+            <span></span>
+
+            <span></span>
+
+            <span></span>
+
+        </div>
+
+
+
+        <p>
+
+            Explore our complete range of industrial
+            products, equipment, components and
+            engineering solutions.
+
         </p>
 
-    </div>
+
+    </section>
 
 
-    <!-- CATEGORY GRID -->
 
-    <div style="
-        width: 100%;
-        max-width: 1100px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 25px;
-        box-sizing: border-box;
-    ">
+    <!-- =====================================
+         CATEGORY GRID
+    ====================================== -->
+
+    <section class="category-grid">
 
 
         {% for category in categories %}
 
 
-        <a href="{% url 'products' %}?category={{ category.id }}"
-           style="
-               display: block;
-               padding: 30px;
-               background: #ffffff;
-               border: 1px solid #e2e6ea;
-               border-radius: 12px;
-               text-decoration: none;
-               color: #222;
-               box-sizing: border-box;
-               transition: 0.3s;
-           ">
+        <!-- =================================
+             CATEGORY CARD
+        ================================== -->
 
+        <a
+            href="{% url 'products' %}?category={{ category.id }}"
+            class="category-card"
+        >
+
+
+            <!-- RED TOP -->
+
+            <div class="card-top-line"></div>
+
+
+
+            <!-- IMAGE -->
 
             <div class="category-image">
 
-    {% if category.image %}
 
-        <img
-            src="{{ category.image.url }}"
-            alt="{{ category.name }}"
-        >
-
-    {% else %}
-
-        <div class="category-no-image">
-            ⚙
-        </div>
-
-    {% endif %}
-
-</div>
+                {% if category.image %}
 
 
-            <h3 style="
-                margin: 10px 0 12px;
-                font-size: 21px;
-            ">
-                {{ category.name }}
-            </h3>
+                    <img
+                        src="{{ category.image.url }}"
+                        alt="{{ category.name }}"
+                    >
 
 
-            <span style="
-                color: #0b5ed7;
-                font-weight: 600;
-                font-size: 14px;
-            ">
-                View Products →
-            </span>
+                {% else %}
+
+
+                    <div class="category-no-image">
+
+                        ⚙
+
+                    </div>
+
+
+                {% endif %}
+
+
+
+                <div class="image-label">
+
+                    Industrial
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- CONTENT -->
+
+            <div class="category-content">
+
+
+                <!-- NUMBER -->
+
+                <div class="category-number">
+
+                    {% if forloop.counter < 10 %}
+
+                        0{{ forloop.counter }}
+
+                    {% else %}
+
+                        {{ forloop.counter }}
+
+                    {% endif %}
+
+                    &nbsp; / &nbsp; CATEGORY
+
+                </div>
+
+
+
+                <!-- NAME -->
+
+                <h3>
+
+                    {{ category.name }}
+
+                </h3>
+
+
+
+                <!-- DESCRIPTION -->
+
+                <p class="category-description">
+
+                    Explore industrial products and
+                    engineering solutions available
+                    in this category.
+
+                </p>
+
+
+
+                <!-- BUTTON -->
+
+                <div class="explore-link">
+
+                    <span>
+
+                        VIEW PRODUCTS
+
+                    </span>
+
+
+                    <span class="explore-arrow">
+
+                        →
+
+                    </span>
+
+                </div>
+
+
+            </div>
 
 
         </a>
@@ -251,86 +1289,91 @@
 
         {% empty %}
 
-        <p style="
-            grid-column: 1 / -1;
-            text-align: center;
-            color: #666;
-            padding: 50px;
-        ">
-            No product categories available.
-        </p>
+
+        <!-- =================================
+             NO CATEGORY
+        ================================== -->
+
+        <div class="empty-category">
+
+
+            <div class="empty-category-icon">
+
+                ⚙
+
+            </div>
+
+
+            <h3>
+
+                No Product Categories Available
+
+            </h3>
+
+
+            <p>
+
+                Please add product categories
+                from the Django admin panel.
+
+            </p>
+
+
+        </div>
+
 
         {% endfor %}
 
 
-    </div>
+    </section>
+
 
 </main>
 
 
-<!-- FOOTER -->
 
-<footer>
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer class="site-footer">
+
 
     <h3>
+
         3D Tech Trading Company
+
     </h3>
 
-    <p>
-        Industrial Products & Engineering Solutions
-    </p>
 
     <p>
+
+        Industrial Products
+
+        <span class="footer-red">
+            •
+        </span>
+
+        Engineering Solutions
+
+    </p>
+
+
+    <p>
+
         © 2026 3D Tech Trading Company.
         All Rights Reserved.
+
     </p>
+
 
 </footer>
 
 
-<!-- MOBILE RESPONSIVE -->
 
-<style>
-
-@media (max-width: 900px) {
-
-    main > div:last-child {
-        grid-template-columns: repeat(2, 1fr) !important;
-    }
-
-}
-
-
-@media (max-width: 600px) {
-
-    main {
-        padding: 45px 15px !important;
-        overflow-x: hidden !important;
-    }
-
-    main > div:first-child h1 {
-        font-size: 30px !important;
-    }
-
-    main > div:first-child p:last-child {
-        font-size: 15px !important;
-    }
-
-    main > div:last-child {
-        grid-template-columns: 1fr !important;
-        width: 100% !important;
-    }
-
-    main > div:last-child a {
-        width: 100% !important;
-    }
-
-}
-
-</style>
-
-
-<!-- HAMBURGER SCRIPT -->
+<!-- =========================================
+     MOBILE MENU SCRIPT
+========================================= -->
 
 <script>
 
