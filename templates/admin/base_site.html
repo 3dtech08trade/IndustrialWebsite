@@ -1,0 +1,33 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+{% block title %}
+3D Tech Trading Company | Admin
+{% endblock %}
+
+{% block branding %}
+
+<div id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <img src="{% static 'main/logo.png' %}"
+             alt="3D Tech Trading Company"
+             style="height:45px; width:45px; object-fit:contain; vertical-align:middle; margin-right:10px;">
+
+        <span style="font-size:20px; font-weight:700;">
+            3D Tech Trading Company
+        </span>
+    </a>
+</div>
+
+{% endblock %}
+
+{% block nav-global %}
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+
+<link rel="stylesheet" href="{% static 'admin/admin.css' %}">
+
+{% endblock %}
