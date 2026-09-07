@@ -13,6 +13,10 @@
 
     <style>
 
+        /* =================================================
+           GLOBAL
+        ================================================= */
+
         * {
             margin: 0;
             padding: 0;
@@ -35,9 +39,9 @@
         }
 
 
-        /* =========================
+        /* =================================================
            HEADER
-        ========================= */
+        ================================================= */
 
         .header {
             position: fixed;
@@ -66,11 +70,13 @@
             gap: 12px;
 
             color: white;
+
             font-size: 20px;
             font-weight: 800;
 
             white-space: nowrap;
         }
+
 
         .logo img {
             width: 48px;
@@ -82,11 +88,12 @@
         }
 
 
-        /* NAVIGATION */
+        /* =================================================
+           DESKTOP NAVIGATION
+        ================================================= */
 
         .main-nav {
             display: flex;
-
             align-items: center;
 
             gap: 18px;
@@ -98,10 +105,7 @@
         .main-nav a {
             color: #e1e5e8 !important;
 
-            text-decoration: none;
-
             font-size: 13px;
-
             font-weight: 500;
 
             position: relative;
@@ -123,14 +127,12 @@
             position: absolute;
 
             left: 0;
-
             bottom: 0;
 
             width: 0;
-
             height: 2px;
 
-            background: #d71920;
+            background: #c62828;
 
             transition: 0.25s;
         }
@@ -141,30 +143,29 @@
         }
 
 
-
         /* =================================================
-           WHATSAPP BUTTON
+           WHATSAPP HEADER BUTTON
         ================================================= */
 
         .whatsapp-btn {
             display: inline-flex;
 
             align-items: center;
+            justify-content: center;
 
             gap: 6px;
+
+            margin-left: 18px;
 
             padding: 10px 15px;
 
             background: #09a545 !important;
 
-            color: #ffffff !important;
-
-            text-decoration: none;
+            color: white !important;
 
             border-radius: 5px;
 
             font-size: 13px;
-
             font-weight: 700;
 
             transition: 0.3s;
@@ -172,7 +173,7 @@
 
 
         .whatsapp-btn:hover {
-            background: #b9141a !important;
+            background: #078c3b !important;
 
             transform: translateY(-2px);
         }
@@ -183,8 +184,9 @@
         }
 
 
-
-        /* MOBILE BUTTON */
+        /* =================================================
+           MOBILE MENU BUTTON
+        ================================================= */
 
         .menu-toggle {
             display: none;
@@ -192,6 +194,7 @@
             margin-left: auto;
 
             border: none;
+
             background: transparent;
 
             color: white;
@@ -202,7 +205,9 @@
         }
 
 
-        /* MOBILE MENU */
+        /* =================================================
+           MOBILE MENU
+        ================================================= */
 
         .mobile-menu {
             display: none;
@@ -217,18 +222,21 @@
             background: #292d31;
 
             border-top: 1px solid #3b4146;
+
             border-bottom: 3px solid #c62828;
 
             z-index: 9998;
 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
+
 
         .mobile-menu.active {
             display: flex;
 
             flex-direction: column;
         }
+
 
         .mobile-menu a {
             padding: 15px 25px;
@@ -240,24 +248,32 @@
             font-weight: 600;
         }
 
+
         .mobile-menu a:hover {
             background: #3b4146;
+
             color: #ff5a5a;
         }
 
 
-        /* =========================
+        /* =================================================
            HERO SECTION
-        ========================= */
+           50% LEFT + 50% RIGHT
+        ================================================= */
 
         .hero-section {
 
-            min-height: 700px;
+            min-height: 650px;
 
-            padding: 150px 7% 100px;
+            padding: 125px 6% 70px;
 
-            display: flex;
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
             align-items: center;
+
+            gap: 45px;
 
             position: relative;
 
@@ -266,56 +282,73 @@
             background:
                 linear-gradient(
                     115deg,
-                    rgba(41,45,49,0.98),
-                    rgba(59,65,70,0.94)
+                    #292d31,
+                    #3b4146
                 );
         }
 
 
-        /* INDUSTRIAL BACKGROUND LINES */
+        /* Decorative circle */
 
         .hero-section::before {
+
             content: "";
 
             position: absolute;
 
-            width: 600px;
-            height: 600px;
+            width: 500px;
+            height: 500px;
 
-            right: -200px;
-            top: -180px;
+            right: -220px;
+            top: -220px;
 
-            border: 80px solid rgba(255,255,255,0.025);
+            border: 70px solid rgba(255,255,255,0.025);
 
             border-radius: 50%;
+
+            pointer-events: none;
         }
 
+
         .hero-section::after {
+
             content: "";
 
             position: absolute;
 
-            width: 400px;
-            height: 400px;
+            width: 350px;
+            height: 350px;
 
-            right: 80px;
+            right: 30%;
+
             bottom: -250px;
 
             border: 50px solid rgba(198,40,40,0.08);
 
             border-radius: 50%;
+
+            pointer-events: none;
         }
 
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
+        /* =================================================
+           HERO LEFT CONTENT
+        ================================================= */
 
-            max-width: 850px;
+        .hero-content {
+
+            position: relative;
+
+            z-index: 3;
+
+            width: 100%;
+
+            max-width: 100%;
         }
 
 
         .hero-label {
+
             display: inline-block;
 
             margin-bottom: 20px;
@@ -329,6 +362,7 @@
             color: #ff5a5a;
 
             font-size: 12px;
+
             font-weight: 800;
 
             letter-spacing: 2px;
@@ -336,21 +370,21 @@
 
 
         .hero-content h1 {
+
             color: white;
 
-            font-size: clamp(42px, 6vw, 72px);
+            font-size: clamp(40px, 4.5vw, 65px);
 
             line-height: 1.08;
 
             font-weight: 800;
 
             letter-spacing: -2px;
-
-            max-width: 850px;
         }
 
 
         .hero-content h1 span {
+
             display: block;
 
             color: #e53935;
@@ -358,24 +392,30 @@
 
 
         .hero-description {
-            max-width: 700px;
 
-            margin-top: 25px;
+            max-width: 600px;
+
+            margin-top: 24px;
 
             color: #c8cdd1;
 
-            font-size: 18px;
+            font-size: 17px;
 
             line-height: 1.8;
         }
 
 
+        /* =================================================
+           HERO BUTTONS
+        ================================================= */
+
         .hero-buttons {
+
             display: flex;
 
             gap: 14px;
 
-            margin-top: 35px;
+            margin-top: 30px;
 
             flex-wrap: wrap;
         }
@@ -383,18 +423,21 @@
 
         .hero-primary-btn,
         .hero-whatsapp-btn {
+
             display: inline-flex;
 
             align-items: center;
+
             justify-content: center;
 
-            min-height: 50px;
+            min-height: 48px;
 
-            padding: 13px 23px;
+            padding: 12px 22px;
 
             border-radius: 5px;
 
-            font-size: 15px;
+            font-size: 14px;
+
             font-weight: 700;
 
             transition: 0.25s;
@@ -402,13 +445,18 @@
 
 
         .hero-primary-btn {
+
             background: #c62828;
+
             color: white;
 
-            box-shadow: 0 6px 18px rgba(198,40,40,0.25);
+            box-shadow:
+                0 6px 18px rgba(198,40,40,0.25);
         }
 
+
         .hero-primary-btn:hover {
+
             background: #a91f1f;
 
             transform: translateY(-2px);
@@ -416,6 +464,7 @@
 
 
         .hero-whatsapp-btn {
+
             background: transparent;
 
             border: 1px solid #70777d;
@@ -423,21 +472,88 @@
             color: white;
         }
 
+
         .hero-whatsapp-btn:hover {
+
             background: white;
+
             color: #292d31;
 
             transform: translateY(-2px);
         }
 
 
-        /* HERO BOTTOM STATS */
+        /* =================================================
+           RIGHT SIDE VIDEO
+        ================================================= */
+
+        .hero-video {
+
+            position: relative;
+
+            width: 100%;
+
+            height: 100%;
+
+            overflow: hidden;
+
+            border-radius: 12px;
+
+            border: 3px solid #5c6267;
+
+            background: #1f2225;
+
+            box-shadow:
+                0 18px 40px rgba(0,0,0,0.35);
+
+            z-index: 3;
+        }
+
+
+        .hero-video video {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+        }
+
+
+        /* Video subtle overlay */
+
+        .hero-video::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(41,45,49,0.18),
+                    rgba(41,45,49,0.02)
+                );
+
+            pointer-events: none;
+        }
+
+
+        /* =================================================
+           HERO STATS
+        ================================================= */
 
         .hero-stats {
+
             position: absolute;
 
             bottom: 0;
-            right: 7%;
+
+            left: 6%;
 
             display: flex;
 
@@ -445,36 +561,46 @@
 
             border-top: 3px solid #c62828;
 
-            box-shadow: 0 -5px 25px rgba(0,0,0,0.18);
+            box-shadow:
+                0 -5px 25px rgba(0,0,0,0.18);
+
+            z-index: 4;
         }
 
 
         .hero-stat {
-            min-width: 150px;
 
-            padding: 18px 22px;
+            min-width: 145px;
+
+            padding: 14px 20px;
 
             border-right: 1px solid #444a4f;
 
             text-align: center;
         }
 
+
         .hero-stat:last-child {
+
             border-right: none;
         }
 
+
         .hero-stat strong {
+
             display: block;
 
             color: white;
 
-            font-size: 22px;
+            font-size: 20px;
         }
 
+
         .hero-stat span {
+
             color: #aeb4b8;
 
-            font-size: 11px;
+            font-size: 10px;
 
             text-transform: uppercase;
 
@@ -482,17 +608,20 @@
         }
 
 
-        /* =========================
-           SECTION COMMON
-        ========================= */
+        /* =================================================
+           COMMON SECTION
+        ================================================= */
 
         .featured-section {
+
             padding: 90px 6%;
+
             background: #e7e9eb;
         }
 
 
         .section-heading {
+
             text-align: center;
 
             max-width: 750px;
@@ -503,6 +632,7 @@
 
         .section-label,
         .small-title {
+
             color: #c62828;
 
             font-size: 12px;
@@ -514,6 +644,7 @@
 
 
         .section-heading h2 {
+
             margin-top: 8px;
 
             color: #292d31;
@@ -525,6 +656,7 @@
 
 
         .section-heading > p:last-child {
+
             margin-top: 12px;
 
             color: #5c6267;
@@ -533,9 +665,9 @@
         }
 
 
-        /* =========================
+        /* =================================================
            PRODUCT GRID
-        ========================= */
+        ================================================= */
 
         .product-grid {
 
@@ -562,7 +694,8 @@
 
             border: 1px solid #d2d5d7;
 
-            box-shadow: 0 5px 18px rgba(41,45,49,0.08);
+            box-shadow:
+                0 5px 18px rgba(41,45,49,0.08);
 
             transition: 0.3s;
 
@@ -571,6 +704,7 @@
 
 
         .product-card::before {
+
             content: "";
 
             position: absolute;
@@ -589,7 +723,8 @@
 
             transform: translateY(-7px);
 
-            box-shadow: 0 15px 30px rgba(41,45,49,0.15);
+            box-shadow:
+                0 15px 30px rgba(41,45,49,0.15);
         }
 
 
@@ -604,6 +739,7 @@
             display: flex;
 
             align-items: center;
+
             justify-content: center;
         }
 
@@ -611,6 +747,7 @@
         .product-image img {
 
             width: 100%;
+
             height: 100%;
 
             object-fit: contain;
@@ -620,11 +757,13 @@
 
 
         .product-card:hover .product-image img {
+
             transform: scale(1.05);
         }
 
 
         .no-image {
+
             color: #7a8085;
 
             font-size: 14px;
@@ -721,7 +860,9 @@
             color: white;
         }
 
+
         .view-product-btn:hover {
+
             background: #3b4146;
         }
 
@@ -733,12 +874,16 @@
             color: white;
         }
 
+
         .add-cart-btn:hover {
+
             background: #a91f1f;
         }
 
 
-        /* VIEW ALL */
+        /* =================================================
+           VIEW ALL
+        ================================================= */
 
         .view-all-products {
 
@@ -753,6 +898,7 @@
             display: inline-flex;
 
             align-items: center;
+
             justify-content: center;
 
             padding: 13px 25px;
@@ -779,9 +925,9 @@
         }
 
 
-        /* =========================
-           SOLUTIONS SECTION
-        ========================= */
+        /* =================================================
+           SOLUTIONS
+        ================================================= */
 
         .solutions-section {
 
@@ -861,11 +1007,13 @@
         .solution-icon {
 
             width: 48px;
+
             height: 48px;
 
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             margin-bottom: 18px;
@@ -900,9 +1048,9 @@
         }
 
 
-        /* =========================
-           ENQUIRY SECTION
-        ========================= */
+        /* =================================================
+           ENQUIRY
+        ================================================= */
 
         .enquiry {
 
@@ -911,6 +1059,7 @@
             display: flex;
 
             align-items: center;
+
             justify-content: space-between;
 
             gap: 35px;
@@ -918,6 +1067,7 @@
             background: #f5f6f7;
 
             border-top: 1px solid #d2d5d7;
+
             border-bottom: 1px solid #d2d5d7;
         }
 
@@ -954,9 +1104,9 @@
         }
 
 
-        /* =========================
+        /* =================================================
            FOOTER
-        ========================= */
+        ================================================= */
 
         footer {
 
@@ -990,9 +1140,9 @@
         }
 
 
-        /* =========================
-           RESPONSIVE
-        ========================= */
+        /* =================================================
+           TABLET
+        ================================================= */
 
         @media (max-width: 1100px) {
 
@@ -1000,57 +1150,112 @@
                 display: none;
             }
 
+
             .whatsapp-btn {
                 display: none;
             }
+
 
             .menu-toggle {
                 display: block;
             }
 
+
             .hero-stats {
                 display: none;
             }
 
+
             .hero-section {
-                min-height: 650px;
+
+                grid-template-columns: 1fr 1fr;
+
+                gap: 25px;
+
+                padding-left: 5%;
+
+                padding-right: 5%;
+            }
+
+
+            .hero-content h1 {
+
+                font-size: 48px;
+            }
+
+
+            .hero-video {
+
+                height: 350px;
             }
         }
 
 
-        @media (max-width: 850px) {
+        /* =================================================
+           MOBILE / TABLET
+        ================================================= */
+
+        @media (max-width: 800px) {
 
             .header {
+
                 padding: 10px 20px;
             }
 
+
             .logo {
+
                 font-size: 17px;
             }
 
+
             .logo img {
+
                 width: 43px;
+
                 height: 43px;
             }
 
 
             .hero-section {
 
-                padding: 135px 7% 80px;
+                grid-template-columns: 1fr;
 
-                min-height: 620px;
+                min-height: auto;
+
+                padding: 120px 6% 60px;
+
+                gap: 35px;
+            }
+
+
+            .hero-content {
+
+                width: 100%;
             }
 
 
             .hero-content h1 {
-                font-size: 46px;
+
+                font-size: 45px;
 
                 letter-spacing: -1px;
             }
 
 
             .hero-description {
+
                 font-size: 16px;
+            }
+
+
+            .hero-video {
+
+                width: 100%;
+
+                height: 330px;
+
+                order: 2;
             }
 
 
@@ -1066,38 +1271,46 @@
 
                 align-items: flex-start;
             }
-
         }
 
+
+        /* =================================================
+           SMALL MOBILE
+        ================================================= */
 
         @media (max-width: 600px) {
 
             .header {
+
                 min-height: 70px;
             }
 
 
             .mobile-menu {
+
                 top: 70px;
             }
 
 
             .logo span {
+
                 font-size: 15px;
             }
 
 
             .logo img {
+
                 width: 40px;
+
                 height: 40px;
             }
 
 
             .hero-section {
 
-                padding: 115px 6% 70px;
+                padding: 110px 6% 55px;
 
-                min-height: 580px;
+                gap: 30px;
             }
 
 
@@ -1111,7 +1324,7 @@
 
             .hero-content h1 {
 
-                font-size: 39px;
+                font-size: 38px;
 
                 line-height: 1.1;
             }
@@ -1137,6 +1350,14 @@
             .hero-whatsapp-btn {
 
                 width: 100%;
+            }
+
+
+            .hero-video {
+
+                height: 250px;
+
+                border-radius: 10px;
             }
 
 
@@ -1200,7 +1421,6 @@
 
                 padding: 38px 20px 25px;
             }
-
         }
 
     </style>
@@ -1211,9 +1431,9 @@
 <body>
 
 
-<!-- =========================
+<!-- =================================================
      HEADER
-========================= -->
+================================================= -->
 
 <header class="header">
 
@@ -1284,7 +1504,9 @@
 </header>
 
 
-<!-- MOBILE MENU -->
+<!-- =================================================
+     MOBILE MENU
+================================================= -->
 
 <div class="mobile-menu" id="mobileMenu">
 
@@ -1326,12 +1548,14 @@
 </div>
 
 
-
-<!-- =========================
+<!-- =================================================
      HERO
-========================= -->
+================================================= -->
 
 <section class="hero-section">
+
+
+    <!-- LEFT SIDE -->
 
     <div class="hero-content">
 
@@ -1384,6 +1608,30 @@
     </div>
 
 
+    <!-- RIGHT SIDE VIDEO -->
+
+    <div class="hero-video">
+
+        <video
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+        >
+
+            <source
+                src="{% static 'main/industrial-video.mp4' %}"
+                type="video/mp4"
+            >
+
+            Your browser does not support the video tag.
+
+        </video>
+
+    </div>
+
+
     <!-- HERO STATS -->
 
     <div class="hero-stats">
@@ -1431,10 +1679,9 @@
 </section>
 
 
-
-<!-- =========================
+<!-- =================================================
      FEATURED PRODUCTS
-========================= -->
+================================================= -->
 
 <section class="featured-section">
 
@@ -1484,7 +1731,6 @@
 
 
             <div class="product-card-content">
-
 
                 <p class="product-category">
                     {{ product.category.name }}
@@ -1556,10 +1802,9 @@
 </section>
 
 
-
-<!-- =========================
+<!-- =================================================
      SOLUTIONS
-========================= -->
+================================================= -->
 
 <section class="solutions-section">
 
@@ -1646,10 +1891,9 @@
 </section>
 
 
-
-<!-- =========================
-     ENQUIRY SECTION
-========================= -->
+<!-- =================================================
+     ENQUIRY
+================================================= -->
 
 <section class="enquiry">
 
@@ -1686,10 +1930,9 @@
 </section>
 
 
-
-<!-- =========================
+<!-- =================================================
      FOOTER
-========================= -->
+================================================= -->
 
 <footer>
 
@@ -1711,10 +1954,9 @@
 </footer>
 
 
-
-<!-- =========================
+<!-- =================================================
      MOBILE MENU SCRIPT
-========================= -->
+================================================= -->
 
 <script>
 
